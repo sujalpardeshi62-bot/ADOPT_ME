@@ -1,0 +1,783 @@
+/* =========================================================
+   HOMEPAGE HERO
+   ========================================================= */
+.home-hero {
+  position: relative;
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.home-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.home-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transform: scale(1.03);
+}
+
+.home-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 18, 16, 0.72) 0%,
+    rgba(20, 18, 16, 0.38) 44%,
+    rgba(20, 18, 16, 0.12) 100%
+  );
+}
+
+.home-hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.home-hero-text {
+  max-width: 660px;
+  color: #fff;
+  padding: 60px 0;
+}
+
+.home-hero-text h1 {
+  font-size: clamp(2.3rem, 4vw, 4.2rem);
+  line-height: 1.1;
+  margin: 16px 0;
+  font-weight: 800;
+}
+
+.home-hero-text p {
+  font-size: 1.05rem;
+  margin-bottom: 22px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.home-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.home-hero-badges span {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 78px;
+}
+
+.logo {
+  flex: 0 0 auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 8px;
+  flex-wrap: nowrap;
+}
+
+.nav-links li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1;
+  transition: all 0.25s ease;
+}
+
+.nav-links a:hover {
+  transform: translateY(-1px);
+}
+
+.navbar-right-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.theme-toggle-btn {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* =========================================================
+   NAVBAR PROFILE DROPDOWN
+   ========================================================= */
+.navbar-welcome-card {
+  display: none;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.navbar-welcome-card.show {
+  display: block;
+}
+
+.navbar-welcome-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(139, 94, 60, 0.12);
+  border-radius: 16px;
+  padding: 7px 10px;
+  cursor: pointer;
+  min-width: 185px;
+  max-width: 205px;
+  min-height: 48px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-welcome-main {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  flex: 1;
+}
+
+.navbar-user-image,
+.navbar-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.navbar-user-image {
+  object-fit: cover;
+  border: 2px solid rgba(139, 94, 60, 0.18);
+  display: none;
+}
+
+.navbar-user-image.show {
+  display: block;
+}
+
+.navbar-user-avatar {
+  background: linear-gradient(135deg, #8B5E3C, #D8C3A5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.navbar-user-avatar.hide {
+  display: none;
+}
+
+.navbar-welcome-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+}
+
+.navbar-welcome-text strong,
+.navbar-welcome-text span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navbar-welcome-text strong {
+  color: #2e2118;
+  font-size: 0.84rem;
+}
+
+.navbar-welcome-text span {
+  color: #7a6557;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.navbar-welcome-caret {
+  color: #8B5E3C;
+  font-size: 0.78rem;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.navbar-welcome-card.open .navbar-welcome-caret {
+  transform: rotate(180deg);
+}
+
+.navbar-welcome-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 250px;
+  background: #fff;
+  border: 1px solid rgba(139, 94, 60, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  padding: 10px;
+  display: none;
+  z-index: 1000;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.navbar-welcome-card.open .navbar-welcome-dropdown {
+  display: grid;
+  gap: 6px;
+}
+
+.navbar-welcome-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #3b2a20;
+  background: #fffaf5;
+  border: 1px solid rgba(139, 94, 60, 0.08);
+  padding: 11px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.navbar-welcome-dropdown a i {
+  color: #8B5E3C;
+  width: 18px;
+}
+
+.navbar-welcome-dropdown a:hover {
+  background: #8B5E3C;
+  color: #fff;
+}
+
+.navbar-welcome-dropdown a:hover i {
+  color: #fff;
+}
+
+/* =========================================================
+   HERO USER WELCOME CARD
+   ========================================================= */
+.home-user-welcome-card {
+  display: none;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 18px;
+  backdrop-filter: blur(10px);
+  max-width: 560px;
+}
+
+.home-user-welcome-card.show {
+  display: block;
+}
+
+.home-user-welcome-head {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.home-user-avatar,
+.home-user-avatar-placeholder {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.home-user-avatar {
+  display: none;
+}
+
+.home-user-avatar.show {
+  display: block;
+}
+
+.home-user-avatar-placeholder.hide {
+  display: none;
+}
+
+.home-user-welcome-head h3 {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.home-user-role-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.home-user-welcome-card p {
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 0;
+}
+
+.home-user-scroll-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.home-user-scroll-actions::-webkit-scrollbar {
+  height: 6px;
+}
+
+.home-user-scroll-actions::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+}
+
+.home-user-scroll-actions .btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   HEAD OFFICE / MAP / CARDS
+   ========================================================= */
+.head-office-card {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  align-items: center;
+  background: linear-gradient(180deg, #fff 0%, #fffaf5 100%);
+}
+
+.head-office-left h2 {
+  color: var(--primary);
+  margin: 10px 0;
+}
+
+.head-office-right {
+  display: grid;
+  gap: 10px;
+}
+
+.head-office-right p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.head-office-right i {
+  color: var(--primary);
+  width: 18px;
+}
+
+.map-section-card {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.map-details h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.map-details p {
+  margin-bottom: 10px;
+}
+
+.map-frame iframe {
+  width: 100%;
+  min-height: 360px;
+  border: 0;
+  border-radius: 18px;
+}
+
+.dynamic-animal-card {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(139, 94, 60, 0.08);
+  background: linear-gradient(180deg, #fff 0%, #fffdfa 100%);
+}
+
+.dynamic-animal-card img {
+  border-radius: 18px 18px 0 0;
+  height: 250px;
+  object-fit: cover;
+}
+
+.animal-card-content {
+  padding: 20px;
+}
+
+.dynamic-card {
+  border: 1px solid rgba(139, 94, 60, 0.08);
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf5 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamic-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 4px;
+  background: linear-gradient(90deg, #8B5E3C, #D8C3A5);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1200px) {
+  .navbar {
+    gap: 10px;
+  }
+
+  .nav-links {
+    gap: 2px;
+    margin: 0 4px;
+  }
+
+  .nav-links a {
+    padding: 8px 9px;
+    font-size: 0.88rem;
+  }
+
+  .navbar-welcome-toggle {
+    min-width: 170px;
+    max-width: 185px;
+  }
+}
+
+@media (max-width: 991px) {
+  .home-hero {
+    min-height: 74vh;
+  }
+
+  .home-hero-text {
+    max-width: 100%;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo {
+    order: 1;
+  }
+
+  .nav-toggle {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .navbar-right-tools {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .nav-links {
+    order: 4;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .navbar-welcome-card {
+    flex: 1 1 auto;
+    max-width: calc(100% - 56px);
+  }
+
+  .navbar-welcome-toggle {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .navbar-welcome-dropdown {
+    right: 0;
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .home-user-welcome-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-hero {
+    min-height: 78vh;
+  }
+
+  .home-hero-text {
+    padding: 40px 0;
+    max-width: 100%;
+  }
+
+  .home-hero-text h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .head-office-card,
+  .map-section-card {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar {
+    gap: 10px;
+  }
+
+  .navbar-right-tools {
+    align-items: center;
+  }
+
+  .navbar-user-image,
+  .navbar-user-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .navbar-welcome-toggle {
+    border-radius: 14px;
+    padding: 8px 10px;
+  }
+
+  .navbar-welcome-dropdown {
+    border-radius: 14px;
+    padding: 8px;
+  }
+
+  .navbar-welcome-dropdown a {
+    font-size: 0.88rem;
+  }
+
+  .home-user-welcome-head {
+    align-items: flex-start;
+  }
+
+  .home-user-avatar,
+  .home-user-avatar-placeholder {
+    width: 64px;
+    height: 64px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .nav-links {
+    gap: 6px;
+  }
+
+  .nav-links a {
+    padding: 8px 9px;
+    font-size: 0.86rem;
+  }
+
+  .theme-toggle-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .home-user-welcome-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .home-user-welcome-head {
+    flex-direction: column;
+  }
+
+  .home-user-welcome-head h3 {
+    font-size: 1.05rem;
+  }
+
+  .home-user-role-pill {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+body.dark-theme .head-office-card,
+body.dark-theme .dynamic-animal-card,
+body.dark-theme .dynamic-card,
+body.dark-theme .map-section-card,
+body.dark-theme .info-card,
+body.dark-theme .testimonial-card,
+body.dark-theme .event-card,
+body.dark-theme .feature-item,
+body.dark-theme .stat,
+body.dark-theme .image-card {
+  background: linear-gradient(180deg, #1f1f1f 0%, #171717 100%);
+  color: #f5f5f5;
+  border: 1px solid #333;
+}
+
+body.dark-theme .dynamic-card::after {
+  background: linear-gradient(90deg, #ffcc70, #8b5e3c);
+}
+
+body.dark-theme .head-office-left h2,
+body.dark-theme .map-details h3 {
+  color: #ffcc70;
+}
+
+body.dark-theme .head-office-right i {
+  color: #ffcc70;
+}
+
+body.dark-theme .animal-meta,
+body.dark-theme .section-head p,
+body.dark-theme .map-details p,
+body.dark-theme .testimonial-card p,
+body.dark-theme .event-card p,
+body.dark-theme .feature-item p,
+body.dark-theme .stat p,
+body.dark-theme .info-card p,
+body.dark-theme .animal-card-content p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body.dark-theme .home-hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.48) 44%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+}
+
+body.dark-theme .home-hero-badges span {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.dark-theme .badge {
+  background: #2a241f;
+  color: #ffcc70;
+}
+
+body.dark-theme .map-frame iframe {
+  filter: brightness(0.85) contrast(1.05);
+}
+
+body.dark-theme .navbar-welcome-toggle {
+  background: rgba(31, 31, 31, 0.94);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-theme .navbar-welcome-text strong {
+  color: #fff;
+}
+
+body.dark-theme .navbar-welcome-text span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+body.dark-theme .navbar-welcome-caret {
+  color: #ffcc70;
+}
+
+body.dark-theme .navbar-user-image {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.dark-theme .navbar-welcome-dropdown {
+  background: #181818;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-theme .navbar-welcome-dropdown a {
+  background: #242424;
+  color: #f5f5f5;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .navbar-welcome-dropdown a i {
+  color: #ffcc70;
+}
+
+body.dark-theme .navbar-welcome-dropdown a:hover {
+  background: #ffcc70;
+  color: #1d1d1d;
+}
+
+body.dark-theme .navbar-welcome-dropdown a:hover i {
+  color: #1d1d1d;
+}
+
+body.dark-theme .home-user-welcome-card {
+  background: rgba(42, 36, 31, 0.72);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-theme .home-user-avatar-placeholder {
+  background: rgba(255, 255, 255, 0.08);
+}

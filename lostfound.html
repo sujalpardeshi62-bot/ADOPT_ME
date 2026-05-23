@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost & Found – AdoptMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="chatbot/chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    .lostfound-hero {
+      position: relative;
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .lostfound-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .lostfound-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lostfound-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(24, 19, 15, 0.72), rgba(139, 94, 60, 0.55));
+      z-index: 2;
+    }
+
+    .lostfound-hero-inner {
+      position: relative;
+      z-index: 3;
+      color: #fff;
+      padding: 70px 0;
+    }
+
+    .lostfound-hero-text {
+      max-width: 760px;
+    }
+
+    .lostfound-hero-text h1 {
+      font-size: clamp(2.1rem, 4vw, 3.6rem);
+      line-height: 1.15;
+      margin: 14px 0 16px;
+      color: #fff;
+    }
+
+    .lostfound-hero-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.92);
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .home-hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .home-hero-badges span {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    .lostfound-alert {
+      background: #fff8e7;
+      border: 1px solid rgba(139, 94, 60, 0.12);
+      border-radius: 16px;
+      padding: 16px 18px;
+      color: #7a5a3d;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .lostfound-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .lostfound-type-badge.lost {
+      background: #fde8e8;
+      color: #b03030;
+    }
+
+    .lostfound-type-badge.found {
+      background: #e7f8ea;
+      color: #1f7a34;
+    }
+
+    .match-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #fff3dc;
+      color: #9b6a00;
+      margin-top: 8px;
+    }
+
+    .lostfound-side-card .list-item {
+      margin-bottom: 12px;
+    }
+
+    .rules-box {
+      background: #fcf7f0;
+      border: 1px solid rgba(139, 94, 60, 0.1);
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .rules-box ul {
+      padding-left: 18px;
+      margin: 10px 0 0;
+      color: #666;
+    }
+
+    .rules-box li {
+      margin-bottom: 8px;
+    }
+
+    .camera-box,
+    .location-box {
+      background: #fcf7f0;
+      border: 1px solid rgba(139, 94, 60, 0.1);
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .camera-preview {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 12px;
+      border: 1px solid rgba(139, 94, 60, 0.12);
+      background: #000;
+    }
+
+    .captured-preview {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 12px;
+      margin-top: 12px;
+      border: 1px solid rgba(139, 94, 60, 0.12);
+      display: none;
+    }
+
+    .camera-actions,
+    .location-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body data-page="lostfound">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">Lost & Found Support</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="adopt.html">Adopt</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="rescue.html">Rescue</a></li>
+        <li><a href="lostfound.html" class="active">Lost & Found</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="lostfound-hero">
+      <div class="lostfound-hero-bg">
+        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80" alt="Lost and found pets support" />
+      </div>
+      <div class="lostfound-hero-overlay"></div>
+
+      <div class="container lostfound-hero-inner">
+        <div class="lostfound-hero-text">
+          <span class="badge">Lost & Found Pets</span>
+          <h1>Report lost or found pets and help reconnect animals with their families safely.</h1>
+          <p>
+            Submit verified lost and found details including pet identity, location, pet photo,
+            city, markings, and contact information so our system can identify better matches.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#lostFoundFormsSection" class="btn btn-primary">Report Now</a>
+            <a href="tel:+919588691368" class="btn btn-secondary">Emergency Contact</a>
+          </div>
+
+          <div class="home-hero-badges">
+            <span>✔ Lost Pet Reporting</span>
+            <span>✔ Photo + Location Verification</span>
+            <span>✔ Dashboard + Admin Synced</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid cards-4">
+          <div class="card dynamic-card stat-card-modern">
+            <h3>Verified</h3>
+            <p>Owner / Finder Contact Records</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>Smart</h3>
+            <p>Species + Color + Location Matching</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>Secure</h3>
+            <p>Responsible Reconnection Process</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>Active</h3>
+            <p>Dashboard + Admin Tracking</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lostFoundFormsSection">
+      <div class="container">
+        <div class="section-head">
+          <h2>Lost & Found Reporting</h2>
+          <p>Submit a lost pet or found pet report with complete verified details for better matching accuracy.</p>
+        </div>
+
+        <div class="grid two-col">
+          <!-- Lost Form -->
+          <div class="card">
+            <h2>Report Lost Pet</h2>
+            <div class="lostfound-alert">
+              Add accurate pet identity, pet image, last seen location, city, owner contact details, and unique markings.
+            </div>
+
+            <form id="lostForm" class="form" novalidate>
+              <div class="form-section-title">Owner Information</div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lostOwnerName">Owner Name *</label>
+                  <input type="text" id="lostOwnerName" required />
+                </div>
+                <div class="form-group">
+                  <label for="lostOwnerPhone">Phone *</label>
+                  <input type="tel" id="lostOwnerPhone" required />
+                  <small class="field-error" id="lostOwnerPhoneError"></small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lostOwnerEmail">Email *</label>
+                <input type="email" id="lostOwnerEmail" required />
+                <small class="field-error" id="lostOwnerEmailError"></small>
+              </div>
+
+              <div class="form-section-title">Pet Details</div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lostName">Pet Name *</label>
+                  <input type="text" id="lostName" required />
+                </div>
+                <div class="form-group">
+                  <label for="lostSpecies">Species *</label>
+                  <select id="lostSpecies" required>
+                    <option value="">Select species</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Bird">Bird</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Cow">Cow</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lostBreed">Breed *</label>
+                  <select id="lostBreed" required>
+                    <option value="">Select breed</option>
+                    <option value="Indie">Indie</option>
+                    <option value="Labrador">Labrador</option>
+                    <option value="German Shepherd">German Shepherd</option>
+                    <option value="Golden Retriever">Golden Retriever</option>
+                    <option value="Persian">Persian</option>
+                    <option value="Siamese">Siamese</option>
+                    <option value="Parrot">Parrot</option>
+                    <option value="Mixed">Mixed</option>
+                    <option value="Unknown">Unknown</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="lostColor">Color *</label>
+                  <select id="lostColor" required>
+                    <option value="">Select color</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Golden">Golden</option>
+                    <option value="Gray">Gray</option>
+                    <option value="Black & White">Black & White</option>
+                    <option value="Brown & White">Brown & White</option>
+                    <option value="Cream">Cream</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lostGender">Gender</label>
+                  <select id="lostGender">
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Unknown">Unknown</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="lostAge">Approx Age</label>
+                  <input type="text" id="lostAge" placeholder="2 years, 6 months..." />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lostUniqueMark">Unique Markings / Collar / ID Tag *</label>
+                <input type="text" id="lostUniqueMark" required />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lostCity">City *</label>
+                  <select id="lostCity" required>
+                    <option value="">Select city</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Kalyan">Kalyan</option>
+                    <option value="Dombivli">Dombivli</option>
+                    <option value="Thane">Thane</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Navi Mumbai">Navi Mumbai</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="lostLocation">Last Seen Area / Location *</label>
+                  <input type="text" id="lostLocation" required />
+                </div>
+              </div>
+
+              <div class="location-box">
+                <strong><i class="fa-solid fa-location-dot"></i> Live Location Capture</strong>
+                <p id="lostLocationStatusText">Lost pet location not captured yet.</p>
+                <input type="hidden" id="lostLatitude" />
+                <input type="hidden" id="lostLongitude" />
+                <div class="location-actions">
+                  <button type="button" class="btn btn-secondary" id="getLostLocationBtn">Fetch Location</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lostDate">Date Lost *</label>
+                <input type="date" id="lostDate" required />
+              </div>
+
+              <div class="form-group">
+                <label for="lostDescription">Additional Details *</label>
+                <textarea id="lostDescription" rows="4" required></textarea>
+              </div>
+
+              <div class="form-section-title">Pet Photo Verification</div>
+              <div class="camera-box">
+                <strong><i class="fa-solid fa-camera"></i> Capture Lost Pet Photo</strong>
+                <video id="lostCameraStream" class="camera-preview" autoplay playsinline style="display:none;"></video>
+                <canvas id="lostCaptureCanvas" style="display:none;"></canvas>
+                <img id="lostCapturedPreview" class="captured-preview" alt="Lost pet captured preview" />
+
+                <div class="camera-actions">
+                  <button type="button" class="btn btn-secondary" id="startLostCameraBtn">Start Camera</button>
+                  <button type="button" class="btn btn-secondary" id="captureLostPhotoBtn" disabled>Capture Photo</button>
+                  <button type="button" class="btn btn-secondary" id="stopLostCameraBtn" disabled>Stop Camera</button>
+                </div>
+              </div>
+
+              <label class="consent-item consent-block">
+                <input type="checkbox" id="lostConsent" required />
+                <span>I confirm the lost pet information is genuine and accurate. *</span>
+              </label>
+              <small class="field-error" id="lostConsentError"></small>
+
+              <button type="submit" class="btn btn-primary full">Submit Lost Pet Report</button>
+              <div id="lostMessage" class="message"></div>
+            </form>
+          </div>
+
+          <!-- Found Form -->
+          <div class="card">
+            <h2>Report Found Pet</h2>
+            <div class="lostfound-alert">
+              Add finder details, pet appearance, city, location, condition, and found pet photo for secure identification.
+            </div>
+
+            <form id="foundForm" class="form" novalidate>
+              <div class="form-section-title">Finder Information</div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="finderName">Finder Name *</label>
+                  <input type="text" id="finderName" required />
+                </div>
+                <div class="form-group">
+                  <label for="finderPhone">Phone *</label>
+                  <input type="tel" id="finderPhone" required />
+                  <small class="field-error" id="finderPhoneError"></small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="finderEmail">Email *</label>
+                <input type="email" id="finderEmail" required />
+                <small class="field-error" id="finderEmailError"></small>
+              </div>
+
+              <div class="form-section-title">Found Pet Details</div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="foundSpecies">Species *</label>
+                  <select id="foundSpecies" required>
+                    <option value="">Select species</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Bird">Bird</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Cow">Cow</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="foundBreed">Breed *</label>
+                  <select id="foundBreed" required>
+                    <option value="">Select breed</option>
+                    <option value="Indie">Indie</option>
+                    <option value="Labrador">Labrador</option>
+                    <option value="German Shepherd">German Shepherd</option>
+                    <option value="Golden Retriever">Golden Retriever</option>
+                    <option value="Persian">Persian</option>
+                    <option value="Siamese">Siamese</option>
+                    <option value="Parrot">Parrot</option>
+                    <option value="Mixed">Mixed</option>
+                    <option value="Unknown">Unknown</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="foundColor">Color *</label>
+                  <select id="foundColor" required>
+                    <option value="">Select color</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Golden">Golden</option>
+                    <option value="Gray">Gray</option>
+                    <option value="Black & White">Black & White</option>
+                    <option value="Brown & White">Brown & White</option>
+                    <option value="Cream">Cream</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="foundGender">Gender</label>
+                  <select id="foundGender">
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Unknown">Unknown</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="foundUniqueMark">Unique Markings / Collar / Tag *</label>
+                <input type="text" id="foundUniqueMark" required />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="foundCity">City *</label>
+                  <select id="foundCity" required>
+                    <option value="">Select city</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Kalyan">Kalyan</option>
+                    <option value="Dombivli">Dombivli</option>
+                    <option value="Thane">Thane</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Navi Mumbai">Navi Mumbai</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="foundLocation">Found Area / Location *</label>
+                  <input type="text" id="foundLocation" required />
+                </div>
+              </div>
+
+              <div class="location-box">
+                <strong><i class="fa-solid fa-location-dot"></i> Live Location Capture</strong>
+                <p id="foundLocationStatusText">Found pet location not captured yet.</p>
+                <input type="hidden" id="foundLatitude" />
+                <input type="hidden" id="foundLongitude" />
+                <div class="location-actions">
+                  <button type="button" class="btn btn-secondary" id="getFoundLocationBtn">Fetch Location</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="foundDate">Date Found *</label>
+                <input type="date" id="foundDate" required />
+              </div>
+
+              <div class="form-group">
+                <label for="foundCondition">Pet Condition *</label>
+                <select id="foundCondition" required>
+                  <option value="">Select condition</option>
+                  <option value="Healthy">Healthy</option>
+                  <option value="Weak">Weak</option>
+                  <option value="Injured">Injured</option>
+                  <option value="Scared">Scared</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="foundDescription">Additional Details *</label>
+                <textarea id="foundDescription" rows="4" required></textarea>
+              </div>
+
+              <div class="form-section-title">Pet Photo Verification</div>
+              <div class="camera-box">
+                <strong><i class="fa-solid fa-camera"></i> Capture Found Pet Photo</strong>
+                <video id="foundCameraStream" class="camera-preview" autoplay playsinline style="display:none;"></video>
+                <canvas id="foundCaptureCanvas" style="display:none;"></canvas>
+                <img id="foundCapturedPreview" class="captured-preview" alt="Found pet captured preview" />
+
+                <div class="camera-actions">
+                  <button type="button" class="btn btn-secondary" id="startFoundCameraBtn">Start Camera</button>
+                  <button type="button" class="btn btn-secondary" id="captureFoundPhotoBtn" disabled>Capture Photo</button>
+                  <button type="button" class="btn btn-secondary" id="stopFoundCameraBtn" disabled>Stop Camera</button>
+                </div>
+              </div>
+
+              <label class="consent-item consent-block">
+                <input type="checkbox" id="foundConsent" required />
+                <span>I confirm the found pet report is genuine and I will cooperate responsibly. *</span>
+              </label>
+              <small class="field-error" id="foundConsentError"></small>
+
+              <button type="submit" class="btn btn-secondary full">Submit Found Pet Report</button>
+              <div id="foundMessage" class="message"></div>
+            </form>
+          </div>
+        </div>
+
+        <div class="rules-box">
+          <h3>Rules & Responsible Reporting</h3>
+          <ul>
+            <li>Only submit genuine lost or found pet information.</li>
+            <li>Provide accurate contact details for safe verification and reconnection.</li>
+            <li>Add a real photo and exact location for better matching accuracy.</li>
+            <li>Do not falsely claim ownership of found pets.</li>
+            <li>If the pet is injured or in danger, use the Rescue page or call emergency support immediately.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-bg">
+      <div class="container grid two-col">
+        <div class="card lostfound-side-card">
+          <h2>Lost Pet Reports</h2>
+          <div id="lostPetsList" class="stack-list"></div>
+        </div>
+
+        <div class="card lostfound-side-card">
+          <h2>Possible Matches</h2>
+          <div id="matchesList" class="stack-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="scroll-buttons">
+    <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
+  </div>
+
+  <footer class="site-footer enhanced-footer professional-footer">
+    <div class="container footer-top-banner">
+      <div>
+        <h2>Help reconnect lost pets with loving families.</h2>
+        <p>Submit verified lost and found reports responsibly for faster matching and safer reunions.</p>
+      </div>
+      <a href="#lostFoundFormsSection" class="btn btn-primary">Submit Report</a>
+    </div>
+
+    <div class="container footer-grid">
+      <div>
+        <h3>AdoptMe</h3>
+        <p>
+          A professional welfare-focused pet adoption and rescue platform dedicated to verified,
+          responsible, and compassionate rescue, rehoming, reunion support, and community care.
+        </p>
+
+        <div class="social-icons-real">
+          <a href="https://facebook.com" class="social-facebook" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com" class="social-x" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com" class="social-youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://linkedin.com" class="social-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Important Links</h4>
+        <ul class="footer-links">
+          <li><a href="adopt.html">Adopt</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="rescue.html">Rescue</a></li>
+          <li><a href="lostfound.html">Lost & Found</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Emergency & Support</h4>
+        <p><strong>AdoptMe Help Desk</strong></p>
+        <p>921, Pet City Kalyan, India</p>
+        <p>Email: support@adoptme.local</p>
+        <p>Phone: +91 9588691368</p>
+        <p><a href="tel:+919588691368">Call Emergency Support</a></p>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+        <p class="footer-note-small">Get alerts, rescue notices, and pet reunion updates.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AdoptMe. All rights reserved.</p>
+      <p>Thank you for supporting safe pet reunions and responsible reporting.</p>
+    </div>
+  </footer>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/lost-found.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Users – AdoptMe Admin</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="manage-users">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <h2>AdoptMe Admin</h2>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="manage-users.html" class="active">Manage Users</a>
+      <a href="manage-animals.html">Manage Animals</a>
+      <a href="manage-adoptions.html">Manage Adoptions</a>
+      <a href="manage-donations.html">Manage Donations</a>
+      <a href="manage-volunteers.html">Manage Volunteers</a>
+      <a href="manage-rescue.html">Manage Rescue</a>
+      <a href="manage-lostfound.html">Manage Lost & Found</a>
+      <a href="manage-events.html">Manage Events</a>
+      <a href="../index.html">Back to Site</a>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-page-head">
+        <h1>Manage Users</h1>
+      </div>
+
+      <div class="card">
+        <div id="adminUsersList" class="stack-list"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../adminjs/main.js"></script>
+  <script src="../adminjs/admin.js"></script>
+  <script src="../adminjs/auth.js"></script>
+</body>
+</html>

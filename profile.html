@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Settings – AdoptMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="chatbot/chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    .profile-page {
+      padding: 40px 0 70px;
+    }
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .profile-summary-card {
+      text-align: center;
+    }
+
+    .profile-summary-photo,
+    .profile-summary-placeholder {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(139, 94, 60, 0.16);
+      background: #f7efe3;
+    }
+
+    .profile-summary-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 3rem;
+    }
+
+    .profile-role-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f7efe3;
+      color: var(--primary);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .profile-photo-upload {
+      display: none;
+    }
+
+    .profile-photo-upload-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border: 2px dashed rgba(139, 94, 60, 0.22);
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--primary);
+      background: #fcf7f0;
+    }
+
+    .profile-form-card h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .profile-role-fields {
+      margin-top: 18px;
+      padding: 18px;
+      background: #fcf7f0;
+      border-radius: 14px;
+      border: 1px solid rgba(139, 94, 60, 0.08);
+    }
+
+    .profile-role-fields h3 {
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body data-page="profile">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">Profile Settings</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      </ul>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main class="profile-page">
+    <div class="container">
+      <div class="profile-layout">
+        <div class="card profile-summary-card">
+          <div id="profileSummaryPhotoWrap"></div>
+          <h2 id="profileSummaryName">User</h2>
+          <p id="profileSummaryEmail">user@email.com</p>
+          <div class="profile-role-pill" id="profileSummaryRole">User</div>
+
+          <input type="file" id="profilePhotoInput" class="profile-photo-upload" accept="image/*" />
+          <label for="profilePhotoInput" class="profile-photo-upload-label">
+            <i class="fa-solid fa-camera"></i> Change Photo
+          </label>
+        </div>
+
+        <div class="card profile-form-card">
+          <h2>Edit Profile</h2>
+          <p class="dashboard-muted">Update your account details and role-specific information.</p>
+
+          <form id="profileForm" class="form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="profileName">Full Name</label>
+                <input type="text" id="profileName" required />
+              </div>
+              <div class="form-group">
+                <label for="profileEmail">Email</label>
+                <input type="email" id="profileEmail" disabled />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="profilePhone">Phone</label>
+                <input type="text" id="profilePhone" />
+              </div>
+              <div class="form-group">
+                <label for="profileCity">City</label>
+                <input type="text" id="profileCity" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="profileBio">Bio</label>
+              <textarea id="profileBio" rows="4" placeholder="Write something about yourself..."></textarea>
+            </div>
+
+            <div id="profileRoleFieldsContainer"></div>
+
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+            <div id="profileMessage" class="message"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/profile.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

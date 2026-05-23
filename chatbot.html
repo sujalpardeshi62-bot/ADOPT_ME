@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdoptMe Chatbot Demo – Luffy AI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="chatbot-demo" class="chatbot-demo-page">
+  <section class="chatbot-demo-hero">
+    <div class="chatbot-demo-container">
+      <h1>AdoptMe Assistant Demo</h1>
+      <p>This standalone page demonstrates the frontend chatbot module powered by <strong>Luffy AI</strong>.</p>
+    </div>
+  </section>
+
+  <section class="chatbot-demo-content">
+    <div class="chatbot-demo-container">
+      <div class="chatbot-demo-card">
+        <h2>What this demo includes</h2>
+        <p>AdoptMe chatbot UI with smart responses, quick actions, timestamps, animations, and themed styling.</p>
+      </div>
+
+      <div class="chatbot-demo-card">
+        <h2>Features</h2>
+        <ul>
+          <li>Rule-based assistant replies</li>
+          <li>AdoptMe branded chat button</li>
+          <li>Typing effect</li>
+          <li>Quick action buttons</li>
+          <li>Responsive floating chat interface</li>
+          <li>Back to top / back to bottom buttons</li>
+        </ul>
+      </div>
+
+      <div class="chatbot-demo-card">
+        <h2>Scroll Demo Area</h2>
+        <p>Scroll this page to test the scroll buttons on the right side.</p>
+      </div>
+
+      <div class="chatbot-demo-spacer"></div>
+    </div>
+  </section>
+
+  <!-- Scroll Buttons -->
+  <div class="scroll-buttons">
+    <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
+  </div>
+
+  <!-- Chatbot Mount -->
+  <div id="chatbot-root"></div>
+
+  <script src="chatbot.js"></script>
+</body>
+</html>

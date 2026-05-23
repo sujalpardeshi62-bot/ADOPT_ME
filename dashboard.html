@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – AdoptMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="chatbot/chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    .dashboard-preview-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .dashboard-preview-count {
+      font-weight: 700;
+      color: #8B5E3C;
+    }
+
+    .dashboard-preview-nav-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .volunteer-id-card {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border: 8px solid #8B5E3C;
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      color: #333;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .certificate-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 78px;
+      font-weight: 800;
+      color: rgba(139, 94, 60, 0.06);
+      transform: rotate(-24deg);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .certificate-stamp {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      border: 3px solid #8B5E3C;
+      color: #8B5E3C;
+      padding: 10px 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      transform: rotate(-12deg);
+      background: rgba(216, 195, 165, 0.2);
+      z-index: 2;
+    }
+
+    .certificate-header,
+    .certificate-subtitle,
+    .certificate-body {
+      position: relative;
+      z-index: 2;
+    }
+
+    .certificate-header {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #8B5E3C;
+      margin-bottom: 8px;
+    }
+
+    .certificate-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 26px;
+    }
+
+    .certificate-body h2,
+    .certificate-body h3 {
+      color: #8B5E3C;
+    }
+
+    .certificate-details {
+      margin: 26px 0;
+      display: grid;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .certificate-details div {
+      background: #f8f5f1;
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+
+    .certificate-signatures {
+      margin-top: 34px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .signature-name {
+      font-family: "Brush Script MT", cursive;
+      font-size: 1.5rem;
+      color: #8B5E3C;
+      margin-top: 10px;
+    }
+
+    .certificate-signatures strong,
+    .certificate-signatures small {
+      display: block;
+      margin-top: 4px;
+    }
+
+    .receipt-thankyou-text {
+      margin-top: 14px;
+      font-weight: 700;
+      color: #8B5E3C;
+    }
+
+    .dashboard-user-profile-wrap {
+      display: grid;
+      gap: 18px;
+    }
+
+    .dashboard-user-profile-box {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      align-items: start;
+      background: linear-gradient(180deg, #fff 0%, #fffdfa 100%);
+      border: 1px solid rgba(139, 94, 60, 0.1);
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .dashboard-user-photo-box {
+      text-align: center;
+    }
+
+    .dashboard-user-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(139, 94, 60, 0.18);
+      background: #f7efe3;
+    }
+
+    .dashboard-user-photo-placeholder {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      background: #f7efe3;
+      border: 4px solid rgba(139, 94, 60, 0.18);
+      color: var(--primary);
+      font-size: 3rem;
+    }
+
+    .dashboard-user-content-box {
+      min-width: 0;
+    }
+
+    .dashboard-user-name {
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .dashboard-user-role-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f7efe3;
+      color: var(--primary);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-user-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .dashboard-user-info-item {
+      background: #fcf7f0;
+      border: 1px solid rgba(139, 94, 60, 0.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .dashboard-user-info-item strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .dashboard-user-info-item span,
+    .dashboard-user-bio-box p {
+      word-break: break-word;
+    }
+
+    .dashboard-user-bio-box {
+      margin-top: 14px;
+      background: #fffaf2;
+      border: 1px solid rgba(139, 94, 60, 0.08);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .dashboard-user-bio-box strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .rescue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .rescue-badge.high {
+      background: #fde8e8;
+      color: #b03030;
+    }
+
+    .rescue-badge.medium {
+      background: #fff3dc;
+      color: #9b6a00;
+    }
+
+    .rescue-badge.low {
+      background: #e7f8ea;
+      color: #1f7a34;
+    }
+
+    .lostfound-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .lostfound-type-badge.lost {
+      background: #fde8e8;
+      color: #b03030;
+    }
+
+    .lostfound-type-badge.found {
+      background: #e7f8ea;
+      color: #1f7a34;
+    }
+
+    .match-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #fff3dc;
+      color: #9b6a00;
+    }
+
+    .event-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .event-status-badge.upcoming {
+      background: #e7f8ea;
+      color: #1f7a34;
+    }
+
+    .event-status-badge.filling {
+      background: #fff3dc;
+      color: #9b6a00;
+    }
+
+    .event-status-badge.closed {
+      background: #fde8e8;
+      color: #b03030;
+    }
+
+    @media (max-width: 991px) {
+      .dashboard-user-profile-box {
+        grid-template-columns: 140px 1fr;
+        gap: 18px;
+        padding: 18px;
+      }
+
+      .dashboard-user-photo,
+      .dashboard-user-photo-placeholder {
+        width: 120px;
+        height: 120px;
+      }
+
+      .dashboard-user-info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .volunteer-id-card {
+        padding: 28px;
+      }
+
+      .certificate-header {
+        font-size: 2rem;
+      }
+
+      .certificate-watermark {
+        font-size: 56px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .dashboard-hero {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .dashboard-role {
+        align-self: flex-start;
+      }
+
+      .dashboard-user-profile-box {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 18px;
+      }
+
+      .dashboard-user-photo-box {
+        text-align: center;
+      }
+
+      .dashboard-user-photo,
+      .dashboard-user-photo-placeholder {
+        width: 110px;
+        height: 110px;
+      }
+
+      .dashboard-user-content-box {
+        text-align: left;
+      }
+
+      .dashboard-user-name {
+        text-align: center;
+      }
+
+      .dashboard-user-role-pill {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .dashboard-user-info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-certificate-signatures {
+        flex-direction: column;
+      }
+
+      .dashboard-certificate-actions {
+        width: 100%;
+      }
+
+      .dashboard-certificate-actions .btn {
+        width: 100%;
+      }
+
+      .dashboard-preview-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .dashboard-preview-nav-buttons {
+        width: 100%;
+      }
+
+      .dashboard-preview-nav-buttons .btn {
+        flex: 1 1 100%;
+      }
+
+      .volunteer-id-card {
+        padding: 22px;
+      }
+
+      .certificate-header {
+        font-size: 1.8rem;
+      }
+
+      .certificate-subtitle {
+        font-size: 1rem;
+      }
+
+      .certificate-watermark {
+        font-size: 46px;
+      }
+
+      .certificate-stamp {
+        position: static;
+        display: inline-block;
+        transform: none;
+        margin-bottom: 16px;
+      }
+
+      .certificate-details {
+        text-align: left;
+      }
+
+      .dashboard-certificate-card,
+      .dashboard-donation-card {
+        padding: 22px;
+      }
+
+      .dashboard-certificate-card::before,
+      .dashboard-donation-card::before {
+        font-size: 44px;
+      }
+
+      .dash-number {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .dashboard-page {
+        padding: 24px 0 50px;
+      }
+
+      .dashboard-hero,
+      .dashboard-panel,
+      .dashboard-user-profile-box,
+      .dashboard-certificate-card,
+      .dashboard-donation-card,
+      .volunteer-id-card {
+        border-radius: 16px;
+      }
+
+      .dashboard-user-profile-box {
+        padding: 16px;
+      }
+
+      .dashboard-user-photo,
+      .dashboard-user-photo-placeholder {
+        width: 96px;
+        height: 96px;
+      }
+
+      .dashboard-user-name {
+        font-size: 1.2rem;
+      }
+
+      .dashboard-user-role-pill {
+        font-size: 0.8rem;
+        padding: 7px 10px;
+      }
+
+      .dashboard-user-info-item {
+        padding: 10px 12px;
+      }
+
+      .dashboard-user-bio-box {
+        padding: 12px;
+      }
+
+      .dashboard-certificate-card,
+      .dashboard-donation-card {
+        padding: 18px;
+      }
+
+      .certificate-header {
+        font-size: 1.5rem;
+      }
+
+      .certificate-watermark {
+        font-size: 34px;
+      }
+
+      .certificate-details div {
+        padding: 9px 10px;
+        font-size: 0.92rem;
+      }
+
+      .dashboard-panel-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .dashboard-certificate-actions {
+        width: 100%;
+      }
+
+      .dashboard-certificate-actions .btn {
+        width: 100%;
+      }
+
+      .dashboard-preview-nav-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .dashboard-preview-nav-buttons .btn {
+        width: 100%;
+      }
+
+      .rescue-badge,
+      .lostfound-type-badge,
+      .event-status-badge,
+      .match-pill {
+        margin-left: 0;
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+<body data-page="dashboard">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">User Dashboard</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="adopt.html">Adopt</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      </ul>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main class="dashboard-page">
+    <div class="container">
+      <section class="dashboard-hero card">
+        <div>
+          <span class="badge">My Dashboard</span>
+          <h1>Hello, <span id="dashboardUserName">User</span> 👋</h1>
+          <p>Track your adoptions, donations, volunteer activity, receipts, and verification details in one place.</p>
+        </div>
+        <div class="dashboard-role" id="dashboardUserRole">User</div>
+      </section>
+
+      <section class="card mt-24 dashboard-user-profile-card">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>My Profile</h2>
+            <p class="dashboard-muted">Your registered account details and profile information</p>
+          </div>
+        </div>
+
+        <div id="dashboardUserProfileCard" class="dashboard-user-profile-wrap">
+          <div class="list-item">Profile information not available.</div>
+        </div>
+      </section>
+
+      <section class="grid cards-6 dashboard-stats">
+        <div class="card dash-card">
+          <h3>My Adoptions</h3>
+          <p class="dash-number" id="myAdoptionsCount">0</p>
+          <small>Applications submitted</small>
+        </div>
+        <div class="card dash-card">
+          <h3>Donations</h3>
+          <p class="dash-number" id="myDonationsCount">0</p>
+          <small>Total donation records</small>
+        </div>
+        <div class="card dash-card">
+          <h3>Volunteer Activity</h3>
+          <p class="dash-number" id="myVolunteerCount">0</p>
+          <small>Registrations completed</small>
+        </div>
+        <div class="card dash-card">
+          <h3>Rescue Requests</h3>
+          <p class="dash-number" id="myRescueCount">0</p>
+          <small>Emergency reports submitted</small>
+        </div>
+        <div class="card dash-card">
+          <h3>Lost & Found</h3>
+          <p class="dash-number" id="myLostFoundCount">0</p>
+          <small>Lost and found reports</small>
+        </div>
+        <div class="card dash-card">
+          <h3>Event Registrations</h3>
+          <p class="dash-number" id="myEventsCount">0</p>
+          <small>Community events joined</small>
+        </div>
+      </section>
+
+      <section class="grid two-col">
+        <div class="card dashboard-panel">
+          <h2>Recent Adoption Requests</h2>
+          <div id="dashboardAdoptionsList" class="stack-list"></div>
+        </div>
+
+        <div class="card dashboard-panel">
+          <h2>My Contributions</h2>
+          <div id="dashboardContributions" class="stack-list"></div>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Verified Adoption Details</h2>
+            <p class="dashboard-muted">Identity-backed application records</p>
+          </div>
+        </div>
+        <div id="dashboardAdvancedAdoptions" class="stack-list"></div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Latest Adoption Certificate</h2>
+            <p class="dashboard-muted">Preview your latest verified adoption certificate</p>
+          </div>
+          <div class="dashboard-certificate-actions">
+            <button class="btn btn-secondary btn-sm" id="dashboardDownloadCertificateBtn" disabled>
+              Download Certificate
+            </button>
+            <button class="btn btn-primary btn-sm" id="dashboardPrintCertificateBtn" disabled>
+              Print Certificate
+            </button>
+          </div>
+        </div>
+
+        <div id="dashboardCertificatePreview" class="dashboard-certificate-preview">
+          <div class="list-item">No adoption certificate available yet.</div>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Latest Donation Receipt</h2>
+            <p class="dashboard-muted">Preview your latest verified AdoptMe donation receipt</p>
+          </div>
+          <div class="dashboard-certificate-actions">
+            <button class="btn btn-secondary btn-sm" id="dashboardDownloadDonationReceiptBtn" disabled>
+              Download Receipt
+            </button>
+            <button class="btn btn-primary btn-sm" id="dashboardPrintDonationReceiptBtn" disabled>
+              Print Receipt
+            </button>
+          </div>
+        </div>
+
+        <div id="dashboardDonationReceiptPreview" class="dashboard-certificate-preview">
+          <div class="list-item">No donation receipt available yet.</div>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Volunteer ID Preview</h2>
+            <p class="dashboard-muted">Preview volunteer IDs one by one</p>
+          </div>
+          <div class="dashboard-certificate-actions">
+            <button class="btn btn-secondary btn-sm" id="dashboardDownloadVolunteerIdBtn" disabled>
+              Download ID
+            </button>
+            <button class="btn btn-primary btn-sm" id="dashboardPrintVolunteerIdBtn" disabled>
+              Print ID
+            </button>
+          </div>
+        </div>
+
+        <div class="dashboard-preview-nav">
+          <div class="dashboard-preview-count" id="dashboardVolunteerPreviewCount">Volunteer 0 of 0</div>
+          <div class="dashboard-preview-nav-buttons">
+            <button class="btn btn-secondary btn-sm" id="dashboardPrevVolunteerBtn" disabled>
+              <i class="fa-solid fa-arrow-left"></i> Previous
+            </button>
+            <button class="btn btn-secondary btn-sm" id="dashboardNextVolunteerBtn" disabled>
+              Next <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="dashboardVolunteerIdPreview" class="dashboard-certificate-preview">
+          <div class="list-item">No volunteer ID available yet.</div>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Donation Verification Summary</h2>
+            <p class="dashboard-muted">Payment, location, and OTP verification overview</p>
+          </div>
+        </div>
+        <div id="dashboardDonationVerificationList" class="stack-list"></div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>My Rescue Requests</h2>
+            <p class="dashboard-muted">Emergency rescue reports submitted by you</p>
+          </div>
+        </div>
+        <div id="dashboardRescueList" class="stack-list"></div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Latest Rescue Request</h2>
+            <p class="dashboard-muted">Latest emergency request and response tracking</p>
+          </div>
+        </div>
+
+        <div id="dashboardLatestRescuePreview" class="dashboard-certificate-preview">
+          <div class="list-item">No rescue request available yet.</div>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>My Lost & Found Reports</h2>
+            <p class="dashboard-muted">Track your lost and found pet submissions</p>
+          </div>
+        </div>
+        <div id="dashboardLostFoundList" class="stack-list"></div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Latest Lost / Found Activity</h2>
+            <p class="dashboard-muted">Latest report and possible match tracking</p>
+          </div>
+        </div>
+
+        <div id="dashboardLatestLostFoundPreview" class="dashboard-certificate-preview">
+          <div class="list-item">No lost or found activity available yet.</div>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>My Event Registrations</h2>
+            <p class="dashboard-muted">Track your upcoming AdoptMe event participation</p>
+          </div>
+        </div>
+        <div id="dashboardEventsList" class="stack-list"></div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Upcoming Event Alerts</h2>
+            <p class="dashboard-muted">Latest event notifications and alerts from AdoptMe</p>
+          </div>
+        </div>
+        <div id="dashboardEventAlertsList" class="stack-list"></div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="dashboard-panel-head">
+          <div>
+            <h2>Latest Event Registration</h2>
+            <p class="dashboard-muted">Your most recent community event registration</p>
+          </div>
+        </div>
+
+        <div id="dashboardLatestEventPreview" class="dashboard-certificate-preview">
+          <div class="list-item">No event registration available yet.</div>
+        </div>
+      </section>
+
+      <section class="grid cards-4 mt-24">
+        <a href="adopt.html" class="card quick-link">
+          <h3>Adopt</h3>
+          <p>Browse animals and submit a verified request.</p>
+        </a>
+        <a href="donate.html" class="card quick-link">
+          <h3>Donate</h3>
+          <p>Support rescue and care operations.</p>
+        </a>
+        <a href="volunteer.html" class="card quick-link">
+          <h3>Volunteer</h3>
+          <p>Offer your time and skills.</p>
+        </a>
+        <a href="rescue.html" class="card quick-link">
+          <h3>Emergency Rescue</h3>
+          <p>Report urgent rescue situations.</p>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <div class="scroll-buttons">
+    <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
+  </div>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/dashboard-cert.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

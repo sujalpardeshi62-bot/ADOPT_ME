@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdoptMe - Pet Adoption & Rescue Platform</title>
+
+  <link rel="icon" type="image/png" href="image/image.png" />
+  <link rel="shortcut icon" href="image/image.png" />
+  <link rel="apple-touch-icon" href="image/image.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="chatbot/chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="home">
+  <div id="loader" class="loader">
+    <div class="loader-content">
+      <div class="paw">🐾</div>
+      <h2>Loading...</h2>
+      <p>Finding loving homes for pets</p>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">Pet Welfare Platform</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="adopt.html">Adopt</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="rescue.html">Rescue</a></li>
+        <li><a href="lostfound.html">Lost & Found</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a id="navDashboardLink" href="dashboard.html">Dashboard</a></li>
+
+        <li class="guest-only-link"><a href="newlogin.html">Login</a></li>
+        <li class="guest-only-link"><a href="newregister.html">Register</a></li>
+      </ul>
+
+      <div class="navbar-right-tools">
+        <div id="navbarWelcomeCard" class="navbar-welcome-card">
+          <button id="navbarWelcomeToggle" class="navbar-welcome-toggle" type="button" aria-expanded="false">
+            <div class="navbar-welcome-main">
+              <img id="navbarUserImage" class="navbar-user-image" src="" alt="Profile" />
+              <div id="navbarUserAvatar" class="navbar-user-avatar">A</div>
+
+              <div class="navbar-welcome-text">
+                <strong id="navbarUserName">Welcome</strong>
+                <span id="navbarUserRole">Guest</span>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down navbar-welcome-caret"></i>
+          </button>
+
+          <div id="navbarWelcomeDropdown" class="navbar-welcome-dropdown">
+            <a id="dropdownDashboardLink" href="dashboard.html"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+            <a href="profile.html"><i class="fa-solid fa-gear"></i> Profile Settings</a>
+            <a href="adopt.html"><i class="fa-solid fa-paw"></i> Adopt</a>
+            <a href="donate.html"><i class="fa-solid fa-hand-holding-heart"></i> Donate</a>
+            <a href="volunteer.html"><i class="fa-solid fa-hands-helping"></i> Volunteer</a>
+            <a href="events.html"><i class="fa-solid fa-calendar-days"></i> Events</a>
+            <a href="rescue.html"><i class="fa-solid fa-truck-medical"></i> Rescue</a>
+            <a href="#" id="homeLogoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+          </div>
+        </div>
+
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="home-hero">
+      <div class="home-hero-bg">
+        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80" alt="AdoptMe Hero" />
+      </div>
+      <div class="home-hero-overlay"></div>
+
+      <div class="container home-hero-inner">
+        <div class="home-hero-text">
+          <span class="badge">#1 Pet-Adoption & Rescue Platform</span><br><br>
+          <span class="badge">Modern Pet Rescue Platform</span>
+
+          <h1>Find a loving companion and help pets start a new life.</h1>
+
+          <p>
+            AdoptMe connects adopters, shelters, volunteers, and rescuers in one trusted,
+            responsive, and welfare-focused digital platform.
+          </p>
+
+          <div class="hero-actions">
+            <a href="adopt.html" class="btn btn-primary">Adopt a Pet</a>
+            <a href="donate.html" class="btn btn-secondary">Support Rescue</a>
+          </div>
+
+          <div class="home-hero-badges">
+            <span>✔ Verified Pets</span>
+            <span>✔ Trusted Adoption Process</span>
+            <span>✔ Compassion-Driven Platform</span>
+          </div>
+
+          <div id="homeUserWelcomeCard" class="home-user-welcome-card">
+            <div class="home-user-welcome-head">
+              <img id="homeUserImage" class="home-user-avatar" src="" alt="Profile" />
+              <div id="homeUserAvatar" class="home-user-avatar-placeholder">A</div>
+
+              <div>
+                <h3 id="homeWelcomeTitle">Welcome back</h3>
+                <span id="homeUserRolePill" class="home-user-role-pill">
+                  <i class="fa-solid fa-user"></i>
+                  Guest
+                </span>
+              </div>
+            </div>
+
+            <p id="homeWelcomeText">
+              Continue your pet welfare journey with quick access to your favorite actions.
+            </p>
+
+            <div class="home-user-scroll-actions" id="homeUserScrollActions">
+              <a id="heroDashboardLink" href="dashboard.html" class="btn btn-primary btn-sm">Dashboard</a>
+              <a href="profile.html" class="btn btn-secondary btn-sm">Profile</a>
+              <a href="adopt.html" class="btn btn-secondary btn-sm">Adopt</a>
+              <a href="donate.html" class="btn btn-secondary btn-sm">Donate</a>
+              <a href="volunteer.html" class="btn btn-secondary btn-sm">Volunteer</a>
+              <a href="events.html" class="btn btn-secondary btn-sm">Events</a>
+              <a href="rescue.html" class="btn btn-secondary btn-sm">Rescue</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid cards-4">
+          <div class="card dynamic-card stat-card-modern">
+            <h3>1200+</h3>
+            <p>Pets Helped</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>850+</h3>
+            <p>Successful Adoptions</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>100+</h3>
+            <p>Volunteer Supporters</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>24/7</h3>
+            <p>Rescue Awareness</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-bg">
+      <div class="container">
+        <div class="card head-office-card">
+          <div class="head-office-left">
+            <span class="badge">Head Office</span>
+            <h2>AdoptMe Welfare & Rescue Headquarters</h2>
+            <p>
+              Our central office coordinates pet rescue, verified adoption, community outreach,
+              donation support, and volunteer engagement across rescue initiatives.
+            </p>
+          </div>
+          <div class="head-office-right">
+            <p><i class="fa-solid fa-location-dot"></i> 921, Pet City Kalyan, India</p>
+            <p><i class="fa-solid fa-envelope"></i> support@adoptme.local</p>
+            <p><i class="fa-solid fa-phone"></i> +91 9588691368</p>
+            <p><i class="fa-regular fa-clock"></i> Mon - Sat : 9:00 AM - 6:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="googleLocationSection">
+      <div class="container">
+        <div class="section-head">
+          <h2>Google Location of Head Office</h2>
+          <p>Find and visit our main AdoptMe support and rescue coordination office.</p>
+        </div>
+
+        <div class="card map-section-card">
+          <div class="map-details">
+            <h3>AdoptMe Head Office</h3>
+            <p><strong>Address:</strong> 921, Pet City Kalyan, India</p>
+            <p><strong>Support:</strong> +91 9588691368</p>
+            <p><strong>Email:</strong> support@adoptme.local</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kalyan+India" target="_blank" class="btn btn-primary">
+              Open in Google Maps
+            </a>
+          </div>
+
+          <div class="map-frame">
+            <iframe
+              title="AdoptMe Head Office Location"
+              src="https://www.google.com/maps?q=Kalyan,India&z=13&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Featured Animals</h2>
+          <p>Meet some of our adorable friends waiting for a forever home.</p>
+        </div>
+        <div class="grid cards-3" id="featuredAnimals"></div>
+      </div>
+    </section>
+
+    <section class="section alt-bg">
+      <div class="container grid two-col">
+        <div>
+          <div class="section-head left">
+            <h2>Simple Adoption Journey</h2>
+            <p>Our process is designed to be caring, safe, and transparent.</p>
+          </div>
+          <div class="feature-list">
+            <div class="feature-item card">
+              <h3>1. Browse Pets</h3>
+              <p>Use filters to find the perfect match based on species, age, and location.</p>
+            </div>
+            <div class="feature-item card">
+              <h3>2. Apply Online</h3>
+              <p>Fill a detailed adoption form so shelters can ensure the best fit.</p>
+            </div>
+            <div class="feature-item card">
+              <h3>3. Welcome Home</h3>
+              <p>After review, your new family member is ready to begin a happy life with you.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card image-card">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80" alt="Adoption journey" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid two-col">
+        <div class="card image-card">
+          <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=900&q=80" alt="Donation support" />
+        </div>
+        <div>
+          <div class="section-head left">
+            <h2>Every Donation Saves Lives</h2>
+            <p>Help us provide food, medical care, rescue transport, and shelter support.</p>
+          </div>
+          <div class="stats-row">
+            <div class="stat card">
+              <h3>Food & Care</h3>
+              <p>Support daily nutrition and wellness.</p>
+            </div>
+            <div class="stat card">
+              <h3>Rescue Operations</h3>
+              <p>Fund urgent rescue and emergency treatment.</p>
+            </div>
+          </div>
+          <a href="donate.html" class="btn btn-primary">Donate Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-bg">
+      <div class="container">
+        <div class="section-head">
+          <h2>Volunteer With Purpose</h2>
+          <p>From event help to foster support, your time can change a pet’s future.</p>
+        </div>
+        <div class="grid cards-3">
+          <div class="card info-card">
+            <h3>Animal Care</h3>
+            <p>Help feed, groom, and comfort shelter animals.</p>
+          </div>
+          <div class="card info-card">
+            <h3>Adoption Events</h3>
+            <p>Support awareness campaigns and meet-and-greet events.</p>
+          </div>
+          <div class="card info-card">
+            <h3>Community Outreach</h3>
+            <p>Educate families about responsible adoption and rescue.</p>
+          </div>
+        </div>
+        <div class="center">
+          <a href="volunteer.html" class="btn btn-secondary">Become a Volunteer</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>What’s Coming Next</h2>
+          <p>Future features designed to make AdoptMe even smarter and more helpful.</p>
+        </div>
+        <div class="grid cards-4">
+          <div class="card info-card">
+            <h3>AI Breed Detection</h3>
+            <p>Upload a pet photo and get breed insights. <span class="coming-soon">Coming soon</span></p>
+          </div>
+          <div class="card info-card">
+            <h3>Foster Care</h3>
+            <p>Temporary homes for pets waiting on permanent adoption. <span class="coming-soon">Coming soon</span></p>
+          </div>
+          <div class="card info-card">
+            <h3>Campaign System</h3>
+            <p>Run donation and rescue campaigns for urgent cases. <span class="coming-soon">Coming soon</span></p>
+          </div>
+          <div class="card info-card">
+            <h3>AI Assistant</h3>
+            <p>Quick answers for adopters, donors, and volunteers. <span class="coming-soon">Live below</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-bg">
+      <div class="container">
+        <div class="section-head">
+          <h2>Happy Stories</h2>
+          <p>Real people, real rescues, real forever homes.</p>
+        </div>
+        <div class="grid cards-3">
+          <div class="card testimonial-card">
+            <p>"AdoptMe made the process easy and caring. Bella is now part of our family!"</p>
+            <h4>— Sarah, Adopter</h4>
+          </div>
+          <div class="card testimonial-card">
+            <p>"I joined as a volunteer and found a wonderful community helping animals every day."</p>
+            <h4>— Daniel, Volunteer</h4>
+          </div>
+          <div class="card testimonial-card">
+            <p>"My donation directly helped fund surgery for a rescued puppy. Incredible platform."</p>
+            <h4>— Nina, Donor</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Upcoming Events</h2>
+          <p>Meet pets, join campaigns, and support rescue work in your city.</p>
+        </div>
+        <div class="grid cards-3">
+          <div class="card event-card">
+            <h3>Weekend Adoption Fair</h3>
+            <p>Downtown Shelter • Saturday • 11:00 AM</p>
+            <a href="events.html" class="text-link">Learn more</a>
+          </div>
+          <div class="card event-card">
+            <h3>Volunteer Orientation</h3>
+            <p>Community Hall • Sunday • 2:00 PM</p>
+            <a href="events.html" class="text-link">Learn more</a>
+          </div>
+          <div class="card event-card">
+            <h3>Fundraising Walk</h3>
+            <p>Central Park • Next Week • 9:00 AM</p>
+            <a href="events.html" class="text-link">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="scroll-buttons">
+    <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
+  </div>
+
+  <footer class="site-footer enhanced-footer professional-footer">
+    <div class="container footer-top-banner">
+      <div>
+        <h2>Give a rescued pet a loving home.</h2>
+        <p>Join our mission to connect hearts, homes, and rescued lives.</p>
+      </div>
+      <a href="adopt.html" class="btn btn-primary">Start Adopting</a>
+    </div>
+
+    <div class="container footer-grid">
+      <div>
+        <h3>AdoptMe</h3>
+        <p>
+          A professional welfare-focused pet adoption and rescue platform dedicated to verified,
+          responsible, and compassionate rehoming of rescued animals.
+        </p>
+
+        <div class="social-icons-real">
+          <a href="https://facebook.com" class="social-facebook" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com" class="social-x" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com" class="social-youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://linkedin.com" class="social-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="adopt.html">Adopt</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="rescue.html">Rescue</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Head Office</h4>
+        <p><strong>AdoptMe Headquarters</strong></p>
+        <p>921, Pet City Kalyan, India</p>
+        <p>Email: support@adoptme.local</p>
+        <p>Phone: +91 9588691368</p>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+        <p class="footer-note-small">Get rescue alerts, pet care tips, and adoption updates.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AdoptMe. All rights reserved.</p>
+      <p>Head Office: 921, Pet City Kalyan, India</p>
+    </div>
+  </footer>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/index.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

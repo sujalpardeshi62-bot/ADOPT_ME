@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adopt - AdoptMe Verified Adoption Portal</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/adopt.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+  <link rel="stylesheet" href="chatbot/chatbot.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<body data-page="adopt">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">Verified Adoption Portal</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="adopt.html" class="active">Adopt</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="rescue.html">Rescue</a></li>
+        <li><a href="lostfound.html">Lost & Found</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Dynamic Hero -->
+    <section class="adopt-hero-dynamic">
+      <div class="adopt-hero-bg">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1600&q=80" alt="Pet adoption hero" />
+      </div>
+      <div class="adopt-hero-layer"></div>
+
+      <div class="container adopt-hero-inner">
+        <div class="adopt-hero-text">
+          <span class="badge">Registered Welfare Style Adoption Portal</span>
+          <h1>Verified Pet Adoption with Responsible Family Screening</h1>
+          <p>
+            AdoptMe follows a structured, welfare-focused adoption process with identity verification,
+            address review, live location support, housing screening, consent tracking, and certificate generation.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#animalsSection" class="btn btn-primary">Browse Verified Pets</a>
+            <a href="#adoptionGuide" class="btn btn-secondary">View Guidelines</a>
+          </div>
+
+          <div class="gov-badges">
+            <span>✔ Identity Verification</span>
+            <span>✔ Responsible Adoption Review</span>
+            <span>✔ Welfare Commitment Consent</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Highlights -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Trusted Adoption System</h2>
+          <p>Built for ethical pet adoption, proper family screening, and animal welfare.</p>
+        </div>
+
+        <div class="grid cards-4">
+          <div class="card stat-card-modern dynamic-card">
+            <h3>300+</h3>
+            <p>Rescue Cases Supported</p>
+          </div>
+          <div class="card stat-card-modern dynamic-card">
+            <h3>200+</h3>
+            <p>Families Matched</p>
+          </div>
+          <div class="card stat-card-modern dynamic-card">
+            <h3>100%</h3>
+            <p>Identity-Driven Screening</p>
+          </div>
+          <div class="card stat-card-modern dynamic-card">
+            <h3>24/7</h3>
+            <p>Rescue Awareness Support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section alt-bg" id="adoptionGuide">
+      <div class="container">
+        <div class="section-head">
+          <h2>Official Adoption Process</h2>
+          <p>Our NGO-style flow ensures long-term safety, family readiness, and animal welfare.</p>
+        </div>
+
+        <div class="grid cards-4">
+          <div class="card process-card">
+            <div class="process-number">1</div>
+            <h3>Select a Pet</h3>
+            <p>Browse verified rescue pets and choose the one best suited for your home.</p>
+          </div>
+          <div class="card process-card">
+            <div class="process-number">2</div>
+            <h3>Provide Identity Details</h3>
+            <p>Fill your full profile, Aadhaar / ID proof, citizenship, and upload documents.</p>
+          </div>
+          <div class="card process-card">
+            <div class="process-number">3</div>
+            <h3>Consent & Screening</h3>
+            <p>Accept the welfare and care terms for responsible pet guardianship.</p>
+          </div>
+          <div class="card process-card">
+            <div class="process-number">4</div>
+            <h3>Certificate Issuance</h3>
+            <p>Generate a printable certificate with the AdoptMe official stamp and signatures.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="section" id="animalsSection">
+      <div class="container">
+        <div class="section-head left">
+          <h2>Available Verified Pets</h2>
+          <p>Filter pets by species, age group, and location.</p>
+        </div>
+
+        <div class="card filter-bar">
+          <div class="form-row">
+            <div class="form-group">
+<label for="speciesFilter">Species</label>
+<select id="speciesFilter">
+  <option value="all">All Species</option>
+  <option value="Dog">Dog</option>
+  <option value="Cat">Cat</option>
+  <option value="Rabbit">Rabbit</option>
+  <option value="Bird">Bird</option>
+  <option value="Parrot">Parrot</option>
+  <option value="Hamster">Hamster</option>
+  <option value="Guinea Pig">Guinea Pig</option>
+  <option value="Turtle">Turtle</option>
+  <option value="Fish">Fish</option>
+  <option value="Horse">Horse</option>
+  <option value="Goat">Goat</option>
+  <option value="Cow">Cow</option>
+  <option value="Duck">Duck</option>
+  <option value="Chicken">Chicken</option>
+  <option value="Pigeon">Pigeon</option>
+  <option value="Ferret">Ferret</option>
+  <option value="Hedgehog">Hedgehog</option>
+  <option value="Tortoise">Tortoise</option>
+</select></div>
+
+            <div class="form-group">
+              <label for="ageFilter">Age</label>
+              <select id="ageFilter">
+                <option value="all">All Ages</option>
+                <option value="Baby">Baby</option>
+                <option value="Young">Young</option>
+                <option value="Adult">Adult</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="locationFilter">Location</label>
+              <select id="locationFilter">
+  <option value="all">All Locations</option>
+  <option value="Mumbai">Mumbai</option>
+  <option value="New Delhi">New Delhi</option>
+  <option value="Uttar Pradesh">Uttar Pradesh</option>
+  <option value="Chennai">Chennai</option>
+  <option value="Gujarat">Gujarat</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Pune">Pune</option>
+  <option value="Bangalore">Bangalore</option>
+  <option value="Jaipur">Jaipur</option>
+</select>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid cards-3" id="animalsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Trust -->
+    <section class="section alt-bg">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why This Process Is Stronger</h2>
+          <p>We collect genuine family readiness information to promote safe adoption outcomes.</p>
+        </div>
+
+        <div class="grid cards-3">
+          <div class="card info-card">
+            <h3>ID-Backed Applications</h3>
+            <p>Applicants submit profile photo, Aadhaar / ID proof, address, and supporting documents.</p>
+          </div>
+          <div class="card info-card">
+            <h3>Location & Housing Awareness</h3>
+            <p>Address, city, region, pincode, and live location improve verification quality.</p>
+          </div>
+          <div class="card info-card">
+            <h3>Welfare Consent</h3>
+            <p>Pet care, safety, health support, and adoption review consent are mandatory.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pet Details Modal -->
+<div class="modal" id="petDetailsModal">
+  <div class="modal-content card pet-details-modal">
+    <button class="modal-close" id="closePetDetailsModal" aria-label="Close modal">&times;</button>
+    <div id="petDetailsContent"></div>
+  </div>
+</div>
+
+  <!-- Adoption Modal -->
+  <div class="modal" id="adoptModal">
+    <div class="modal-content card adoption-modal-large">
+      <button class="modal-close" id="closeAdoptModal" aria-label="Close modal">&times;</button>
+      <h2>Verified Pet Adoption Application</h2>
+      <p id="adoptPetTitle">Apply for your chosen pet</p>
+
+      <form id="adoptionForm" class="form" novalidate>
+        <input type="hidden" id="adoptAnimalId" />
+        <input type="hidden" id="adoptAnimalName" />
+
+        <div class="form-section-title">Applicant Personal Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptName">Full Name *</label>
+            <input type="text" id="adoptName" required />
+          </div>
+          <div class="form-group">
+            <label for="adoptEmail">Email *</label>
+            <input type="email" id="adoptEmail" required />
+            <small class="field-error" id="emailError"></small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptPhone">Phone *</label>
+            <input type="tel" id="adoptPhone" required />
+            <small class="field-error" id="phoneError"></small>
+          </div>
+          <div class="form-group">
+            <label for="adoptDob">Date of Birth *</label>
+            <input type="date" id="adoptDob" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptGender">Gender *</label>
+            <select id="adoptGender" required>
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="adoptOccupation">Occupation *</label>
+            <input type="text" id="adoptOccupation" required />
+          </div>
+        </div>
+
+        <div class="form-section-title">Citizenship & Identity Verification</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptCitizenship">Are you an Indian Citizen? *</label>
+            <select id="adoptCitizenship" required>
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+              <option value="OCI / NRI">OCI / NRI</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="adoptIdType">Valid ID Proof Type *</label>
+            <select id="adoptIdType" required>
+              <option value="">Select ID Type</option>
+              <option value="Aadhaar Card">Aadhaar Card</option>
+              <option value="PAN Card">PAN Card</option>
+              <option value="Passport">Passport</option>
+              <option value="Voter ID">Voter ID</option>
+              <option value="Driving License">Driving License</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptAadhaarNumber">Aadhaar Number *</label>
+            <input type="text" id="adoptAadhaarNumber" placeholder="Enter 12-digit Aadhaar number" maxlength="12" required />
+          </div>
+          <div class="form-group">
+            <label for="adoptIdNumber">ID Number *</label>
+            <input type="text" id="adoptIdNumber" placeholder="Enter valid ID number" required />
+          </div>
+        </div>
+
+        <div class="form-section-title">Residential Address & Location</div>
+        <div class="form-group">
+          <label for="adoptAddress">Address *</label>
+          <input type="text" id="adoptAddress" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptCity">City *</label>
+            <input type="text" id="adoptCity" required />
+          </div>
+          <div class="form-group">
+            <label for="adoptState">State / Region *</label>
+            <input type="text" id="adoptState" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptPincode">Pincode *</label>
+            <input type="text" id="adoptPincode" maxlength="6" required />
+          </div>
+          <div class="form-group">
+            <label for="adoptLiveLocation">Live Location *</label>
+            <div class="location-group">
+              <input type="text" id="adoptLiveLocation" placeholder="Latitude, Longitude" required readonly />
+              <button type="button" class="btn btn-secondary btn-sm" id="getLocationBtn">Use My Location</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section-title">Housing & Family Readiness</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptLivingType">Living Type *</label>
+            <select id="adoptLivingType" required>
+              <option value="">Select</option>
+              <option value="Apartment">Apartment</option>
+              <option value="House">House</option>
+              <option value="Farm">Farm</option>
+              <option value="Shared Housing">Shared Housing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="adoptOwnership">Ownership *</label>
+            <select id="adoptOwnership" required>
+              <option value="">Select</option>
+              <option value="Owned">Owned</option>
+              <option value="Rented">Rented</option>
+              <option value="Family Home">Family Home</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptYard">Do you have a yard? *</label>
+            <select id="adoptYard" required>
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="adoptOtherPets">Any other pets at home? *</label>
+            <select id="adoptOtherPets" required>
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="adoptFamilySupport">Does your family support this adoption? *</label>
+          <select id="adoptFamilySupport" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Partially">Partially</option>
+          </select>
+        </div>
+
+        <div class="form-section-title">Adoption Readiness & Welfare Commitment</div>
+        <div class="form-group">
+          <label for="adoptExperience">Experience with Pets *</label>
+          <textarea id="adoptExperience" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="adoptReason">Reason for Adoption *</label>
+          <textarea id="adoptReason" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="adoptDailyCare">How will you manage feeding, exercise, grooming, and daily care? *</label>
+          <textarea id="adoptDailyCare" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="adoptEmergencyPlan">Emergency / Veterinary Care Plan *</label>
+          <textarea id="adoptEmergencyPlan" rows="3" required></textarea>
+        </div>
+
+        <div class="form-section-title">Verification Uploads</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adoptPhoto">Upload Profile Photo *</label>
+            <input type="file" id="adoptPhoto" accept="image/*" required />
+          </div>
+          <div class="form-group">
+            <label for="adoptDocument">Upload Valid ID Document *</label>
+            <input type="file" id="adoptDocument" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" required />
+          </div>
+        </div>
+
+        <div class="form-section-title">Terms, Conditions & Declaration</div>
+        <div class="consent-box">
+          <label class="consent-item consent-block">
+            <input type="checkbox" id="adoptConsent1" required />
+            <span>I confirm that the information provided in this application is true and valid. *</span>
+          </label>
+
+          <label class="consent-item consent-block">
+            <input type="checkbox" id="adoptConsent2" required />
+            <span>I agree to provide permanent food, shelter, veterinary support, and humane treatment to the adopted pet. *</span>
+          </label>
+
+          <label class="consent-item consent-block">
+            <input type="checkbox" id="adoptConsent3" required />
+            <span>I understand the application may be approved, rejected, or further verified by the AdoptMe team. *</span>
+          </label>
+
+          <label class="consent-item consent-block">
+            <input type="checkbox" id="adoptConsent4" required />
+            <span>I consent to the use of my submitted data and documents for verification and adoption screening. *</span>
+          </label>
+
+          <label class="consent-item consent-block">
+            <input type="checkbox" id="adoptConsent5" required />
+            <span>I confirm that I am adopting responsibly and not for resale, breeding abuse, or neglectful purposes. *</span>
+          </label>
+        </div>
+
+        <small class="field-error" id="consentError"></small>
+
+        <div class="form-actions-extended">
+          <button type="submit" class="btn btn-primary">Submit Verified Adoption Request</button>
+          <button type="button" class="btn btn-secondary" id="downloadCertificateBtn" disabled>Download Certificate</button>
+          <button type="button" class="btn btn-secondary" id="printCertificateBtn" disabled>Print Certificate</button>
+        </div>
+
+        <div id="adoptionMessage" class="message"></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="certificateWrapper" class="certificate-wrapper">
+  <div id="adoptionCertificate" class="adoption-certificate">
+    <div class="certificate-watermark">🐾 AdoptMe</div>
+    <div class="certificate-stamp">ADOPTME VERIFIED</div>
+    <div class="certificate-header">🐾 AdoptMe</div>
+    <div class="certificate-subtitle">Official Verified Pet Adoption Certificate</div>
+
+    <div class="certificate-body">
+      <p>This is to certify that</p>
+      <h2 id="certificateUserName">Adopter Name</h2>
+      <p>has completed a verified adoption application for</p>
+      <h3 id="certificatePetName">Pet Name</h3>
+      <p>through the AdoptMe – Pet Adoption & Rescue Platform.</p>
+
+      <div class="certificate-details">
+        <div><strong>Application ID:</strong> <span id="certificateApplicationId">-</span></div>
+        <div><strong>Date:</strong> <span id="certificateDate">-</span></div>
+        <div><strong>Status:</strong> Pending Review</div>
+        <div><strong>Verification:</strong> Identity & document details submitted</div>
+      </div>
+
+      <div class="certificate-signatures founder-signatures">
+        <div>
+          <span>Founder Signature</span>
+          <strong>Vishwakarma Ashish</strong>
+          <small>Web Developer</small>
+          <small>BCA Student</small>
+          <div class="signature-line signature-name">Ashish</div>
+        </div>
+        <div>
+          <span>Co-Founder Signature</span>
+          <strong>Pardeshi Sujal</strong>
+          <small>Full stack developer</small>
+          <small>BCA Student</small>
+          <div class="signature-line signature-name">Sujal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <footer class="site-footer enhanced-footer ngo-footer professional-footer">
+    <div class="container footer-top-banner">
+      <div>
+        <h2>Adopt. Protect. Care.</h2>
+        <p>Support an ethical, identity-backed pet adoption process designed for animal welfare.</p>
+      </div>
+      <a href="#animalsSection" class="btn btn-primary">Adopt Now</a>
+    </div>
+
+    <div class="container footer-grid">
+      <div>
+        <h3>AdoptMe</h3>
+        <p>
+          A professional welfare-focused pet adoption and rescue platform dedicated to verified,
+          responsible, and compassionate rehoming of rescued animals.
+        </p>
+
+       <div class="social-icons-real">
+        <a href="https://facebook.com" class="social-facebook" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" class="social-instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com" class="social-x" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://youtube.com" class="social-youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://linkedin.com" class="social-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+       </div>
+      </div>
+
+      <div>
+        <h4>Adoption Services</h4>
+        <ul class="footer-links">
+          <li><a href="adopt.html">Browse Pets</a></li>
+          <li><a href="#adoptionGuide">Adoption Guidelines</a></li>
+          <li><a href="dashboard.html">Track Applications</a></li>
+          <li><a href="events.html">Adoption Events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Support & Access</h4>
+        <ul class="footer-links">
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="rescue.html">Emergency Rescue</a></li>
+          <li><a href="lostfound.html">Lost & Found</a></li>
+          <li><a href="login.html">User Login</a></li>
+          <li><a href="register.html">User Registration</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact & Verification</h4>
+        <p><strong>Email:</strong> support@adoptme.local</p>
+        <p><strong>Phone:</strong> +91 9588691368</p>
+        <p><strong>Address:</strong> 921, Pet City Kalyan, India</p>
+        <p><strong>Support Hours:</strong> Mon - Sat, 9:00 AM - 6:00 PM</p>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+        <p class="footer-note-small">Get pet care alerts, adoption updates, and rescue stories.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AdoptMe – Pet Adoption & Rescue Platform. All rights reserved.</p>
+      <p>Developed with care for animal welfare and responsible adoption.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top / Bottom Buttons -->
+<div class="scroll-buttons">
+  <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+  <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+    <i class="fa-solid fa-arrow-down"></i>
+  </button>
+</div>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/adoption.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

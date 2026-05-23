@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate – AdoptMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/donate.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="chatbot/chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="donate">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">Verified Donation Portal</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="adopt.html">Adopt</a></li>
+        <li><a href="donate.html" class="active">Donate</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="rescue.html">Rescue</a></li>
+        <li><a href="lostfound.html">Lost & Found</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="donate-hero">
+      <div class="donate-hero-bg">
+        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80" alt="Support rescue work" />
+      </div>
+      <div class="donate-hero-overlay"></div>
+
+      <div class="container donate-hero-inner">
+        <div class="donate-hero-text">
+          <span class="badge">Verified Welfare Donation Portal</span>
+          <h1>Every donation helps rescue, heal, feed, shelter, and protect more animals.</h1>
+          <p>
+            Support food, emergency treatment, shelter care, transport, and rescue response.
+            Your contribution directly strengthens our welfare mission.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#donateSection" class="btn btn-primary">Donate Now</a>
+            <a href="#receiptSection" class="btn btn-secondary">Receipt Details</a>
+          </div>
+
+          <div class="home-hero-badges">
+            <span>✔ Verified Receipt</span>
+            <span>✔ Dashboard Synced</span>
+            <span>✔ Admin Managed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid cards-4">
+          <div class="card dynamic-card stat-card-modern">
+            <h3>₹500+</h3>
+            <p>Feeds rescued pets</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>₹1500+</h3>
+            <p>Supports first aid care</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>₹3000+</h3>
+            <p>Emergency rescue aid</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>100%</h3>
+            <p>Welfare-focused support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="donateSection">
+      <div class="container grid two-col donate-layout">
+        <div class="card donate-form-card">
+          <div class="section-head left">
+            <h1>Support Rescue Work</h1>
+            <p>Your contribution helps provide food, treatment, transport, and safe shelter.</p>
+          </div>
+
+          <form id="donationForm" class="form" novalidate>
+            <div class="form-section-title">Donor Information</div>
+
+            <div class="form-group">
+              <label for="donorName">Full Name *</label>
+              <input type="text" id="donorName" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="donorEmail">Email *</label>
+                <input type="email" id="donorEmail" required />
+                <small class="field-error" id="donorEmailError"></small>
+              </div>
+              <div class="form-group">
+                <label for="donorPhone">Phone *</label>
+                <input type="tel" id="donorPhone" required />
+                <small class="field-error" id="donorPhoneError"></small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="donorCity">City *</label>
+                <input type="text" id="donorCity" required />
+              </div>
+              <div class="form-group">
+                <label for="donorLocation">Live Donation Location *</label>
+                <div class="location-group">
+                  <input type="text" id="donorLocation" placeholder="Latitude, Longitude" readonly required />
+                  <button type="button" class="btn btn-secondary btn-sm" id="getDonationLocationBtn">Use My Location</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section-title">Scanner Access & QR Payment</div>
+            <div class="verification-row">
+              <div class="verification-card">
+                <h3><i class="fa-solid fa-camera"></i> Donor Scanner Access</h3>
+                <p class="scanner-note">Allow camera access to simulate donor device scanner.</p>
+                <div class="scanner-box">
+                  <video id="scannerVideo" autoplay playsinline muted></video>
+                </div>
+                <div class="verification-actions">
+                  <button type="button" class="btn btn-secondary btn-sm" id="startScannerBtn">Start Camera</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="stopScannerBtn">Stop Camera</button>
+                </div>
+                <small id="scannerStatus" class="field-error"></small>
+              </div>
+
+              <div class="verification-card">
+                <h3><i class="fa-solid fa-qrcode"></i> AdoptMe QR Payment</h3>
+                <div class="qr-box">
+                  <img
+                    id="adoptmeQrImage"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=yourupiid@oksbi&pn=AdoptMe%20Welfare%20Foundation&am=500&cu=INR"
+                    alt="AdoptMe QR Code"
+                  />
+                </div>
+                <p class="scanner-note">Scan the QR using your UPI app to simulate the payment process.</p>
+              </div>
+            </div>
+
+            <div class="form-section-title">Donation Details</div>
+
+            <div class="quick-amounts">
+              <button type="button" class="quick-amount-btn" data-amount="500">₹500</button>
+              <button type="button" class="quick-amount-btn" data-amount="1000">₹1000</button>
+              <button type="button" class="quick-amount-btn" data-amount="2500">₹2500</button>
+              <button type="button" class="quick-amount-btn" data-amount="5000">₹5000</button>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="donationAmount">Amount (₹) *</label>
+                <input type="number" id="donationAmount" min="1" required />
+                <small class="field-error" id="donationAmountError"></small>
+              </div>
+              <div class="form-group">
+                <label for="donationType">Donation Type *</label>
+                <select id="donationType" required>
+                  <option value="">Select one</option>
+                  <option value="One-time">One-time</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Emergency Rescue">Emergency Rescue</option>
+                  <option value="Medical Care">Medical Care</option>
+                  <option value="Shelter Food">Shelter Food</option>
+                  <option value="General Support">General Support</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="paymentMethod">Payment Method *</label>
+              <select id="paymentMethod" required>
+                <option value="">Select payment option</option>
+                <option value="UPI">UPI</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Net Banking">Net Banking</option>
+                <option value="Wallet">Wallet</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+              </select>
+            </div>
+
+            <div class="payment-panel" id="upiPanel">
+              <h3><i class="fa-solid fa-qrcode"></i> UPI Payment</h3>
+              <div class="upi-box">
+                <div class="upi-top">
+                  <div>
+                    <p><strong>UPI ID:</strong> <span id="merchantUpiIdText">yourupiid@oksbi</span></p>
+                    <p><strong>Merchant:</strong> AdoptMe Welfare Foundation</p>
+                  </div>
+                  <div class="upi-logos">
+                    <span class="upi-logo upi-gpay">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/1280px-Google_Pay_Logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20221017164555" alt="Google Pay" />
+                    </span>
+                    <span class="upi-logo upi-phonepe">
+                      <img src="https://download.logo.wine/logo/PhonePe/PhonePe-Logo.wine.png" alt="PhonePe" />
+                    </span>
+                    <span class="upi-logo upi-paytm">
+                      <img src="https://download.logo.wine/logo/Paytm/Paytm-Logo.wine.png" alt="Paytm" />
+                    </span>
+                    <span class="upi-logo upi-bhim">
+                      <img src="https://download.logo.wine/logo/Unified_Payments_Interface/Unified_Payments_Interface-Logo.wine.png" alt="UPI" />
+                    </span>
+                  </div>
+                </div>
+
+                <div class="upi-actions"> 
+                  <button type="button" class="upi-app-btn" data-upiapp="Google Pay">Google Pay</button> 
+                  <button type="button" class="upi-app-btn" data-upiapp="PhonePe">PhonePe</button> 
+                  <button type="button" class="upi-app-btn" data-upiapp="Paytm">Paytm</button> 
+                  <button type="button" class="upi-app-btn" data-upiapp="BHIM">BHIM</button> 
+                </div>
+
+                <div class="upi-app-redirect" id="upiRedirectPanel">
+                  <p><strong>Selected App:</strong> <span id="selectedUpiApp">-</span></p>
+                  <p><strong>Redirect Status:</strong> <span id="upiRedirectStatus">Waiting</span></p>
+                  <a href="#" class="btn btn-primary btn-sm" id="simulateUpiRedirectBtn" target="_blank">Open UPI Payment</a>
+                  <button type="button" class="btn btn-secondary btn-sm" id="confirmUpiPaidBtn">I Have Paid</button>
+                </div>
+
+                <p class="upi-note">
+                  On supported mobile devices, “Open UPI Payment” may launch your installed UPI app.
+                </p>
+              </div>
+            </div>
+
+            <div class="payment-panel" id="creditCardPanel">
+              <h3><i class="fa-regular fa-credit-card"></i> Credit Card Details</h3>
+              <div class="payment-fields-grid">
+                <input type="text" id="creditCardNumber" placeholder="Card Number" />
+                <input type="text" id="creditCardName" placeholder="Cardholder Name" />
+                <input type="text" id="creditCardExpiry" placeholder="MM/YY" />
+                <input type="text" id="creditCardCvv" placeholder="CVV" />
+              </div>
+            </div>
+
+            <div class="payment-panel" id="debitCardPanel">
+              <h3><i class="fa-solid fa-credit-card"></i> Debit Card Details</h3>
+              <div class="payment-fields-grid">
+                <input type="text" id="debitCardNumber" placeholder="Card Number" />
+                <input type="text" id="debitCardName" placeholder="Cardholder Name" />
+                <input type="text" id="debitCardExpiry" placeholder="MM/YY" />
+                <input type="text" id="debitCardCvv" placeholder="CVV" />
+              </div>
+            </div>
+
+            <div class="payment-panel" id="netBankingPanel">
+              <h3><i class="fa-solid fa-building-columns"></i> Net Banking Details</h3>
+              <div class="payment-fields-grid">
+                <input type="text" id="netBankingBankName" placeholder="Bank Name" />
+                <input type="text" id="netBankingUserId" placeholder="User ID / Customer ID" />
+                <input type="password" id="netBankingPassword" placeholder="Password" />
+              </div>
+            </div>
+
+            <div class="payment-panel" id="walletPanel">
+              <h3><i class="fa-solid fa-wallet"></i> Wallet Details</h3>
+              <div class="payment-fields-grid">
+                <input type="text" id="walletProvider" placeholder="Wallet Provider (Paytm, Amazon Pay...)" />
+                <input type="text" id="walletMobile" placeholder="Registered Wallet Mobile Number" />
+              </div>
+            </div>
+
+            <div class="payment-panel" id="bankPanel">
+              <h3><i class="fa-solid fa-building-columns"></i> AdoptMe Bank Account</h3>
+              <div class="bank-box">
+                <p><strong>Account Name:</strong> AdoptMe Welfare Foundation</p>
+                <p><strong>Bank:</strong> State Bank of India</p>
+                <p><strong>Account Number:</strong> 123456789012</p>
+                <p><strong>IFSC Code:</strong> SBIN0001234</p>
+                <p><strong>Branch:</strong> Kalyan Head Office</p>
+                <p><strong>Reference Note:</strong> Use your name + phone number in transaction remarks.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="donationMessageText">Message / Purpose Note (optional)</label>
+              <textarea id="donationMessageText" rows="4"></textarea>
+            </div>
+
+            <div class="form-section-title">Consent</div>
+            <div class="consent-box">
+              <label class="consent-item consent-block">
+                <input type="checkbox" id="donationConsent" required />
+                <span>I confirm that the donor information and donation amount entered are correct and I consent to generating an AdoptMe receipt. *</span>
+              </label>
+            </div>
+            <small class="field-error" id="donationConsentError"></small>
+
+            <div class="form-actions-extended">
+              <button type="submit" class="btn btn-primary">Complete Donation</button>
+              <button type="button" class="btn btn-secondary" id="previewReceiptBtn" disabled>Preview Receipt</button>
+              <button type="button" class="btn btn-secondary" id="downloadReceiptBtn" disabled>Download Receipt</button>
+              <button type="button" class="btn btn-secondary" id="printReceiptBtn" disabled>Print Receipt</button>
+            </div>
+
+            <div id="donationMessage" class="message"></div>
+          </form>
+        </div>
+
+        <div class="card donate-side-card">
+          <h2>Recent Donations</h2>
+          <div id="donationsList" class="stack-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt-bg" id="receiptSection">
+      <div class="container">
+        <div class="section-head">
+          <h2>Donation Receipt Generation</h2>
+          <p>Every completed donation creates an official AdoptMe donation receipt with watermark, stamp, amount, payment mode, and signatures.</p>
+        </div>
+
+        <div class="grid cards-4">
+          <div class="card info-card">
+            <h3><i class="fa-solid fa-file-invoice"></i> Verified Receipt</h3>
+            <p>Includes donor details, payment method, donation amount, and donation purpose.</p>
+          </div>
+          <div class="card info-card">
+            <h3><i class="fa-solid fa-shield-heart"></i> Verified Payment</h3>
+            <p>Tracks simulated UPI, bank transfer, wallet, card, and net banking confirmations.</p>
+          </div>
+          <div class="card info-card">
+            <h3><i class="fa-solid fa-stamp"></i> AdoptMe Stamp</h3>
+            <p>Official watermark and donation verification stamp built into the receipt layout.</p>
+          </div>
+          <div class="card info-card">
+            <h3><i class="fa-solid fa-signature"></i> Signatures</h3>
+            <p>Receipt includes founder and co-founder signatures for a polished official presentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="receiptPreviewModal">
+    <div class="modal-content card receipt-preview-modal">
+      <button class="modal-close" id="closeReceiptPreviewModal">&times;</button>
+      <div id="receiptPreviewContainer"></div>
+    </div>
+  </div>
+
+  <div id="receiptWrapper" class="certificate-wrapper">
+    <div id="donationReceiptCard" class="adoption-certificate donation-receipt-card paytm-style-receipt">
+      <div class="receipt-corner receipt-corner-left"></div>
+      <div class="receipt-corner receipt-corner-right"></div>
+      <div class="certificate-watermark">🐾 AdoptMe</div>
+      <div class="certificate-stamp">ADOPTME DONATION VERIFIED</div>
+      <div class="certificate-header">🐾 AdoptMe</div>
+      <div class="certificate-subtitle">Official Donation Receipt</div>
+
+      <div class="certificate-body">
+        <p>Thank you for supporting animal welfare.</p>
+        <h2 id="receiptDonorName">Donor Name</h2>
+        <p>has contributed an amount of</p>
+        <h3 id="receiptAmount">₹0</h3>
+
+        <div class="certificate-details">
+          <div><strong>Receipt ID:</strong> <span id="receiptId">-</span></div>
+          <div><strong>Donation Type:</strong> <span id="receiptType">-</span></div>
+          <div><strong>Payment Method:</strong> <span id="receiptPaymentMethod">-</span></div>
+          <div><strong>UPI App / Transfer:</strong> <span id="receiptUpiApp">-</span></div>
+          <div><strong>Payment Verification:</strong> <span id="receiptVerificationStatus">-</span></div>
+          <div><strong>Date:</strong> <span id="receiptDate">-</span></div>
+          <div><strong>Email:</strong> <span id="receiptEmail">-</span></div>
+          <div><strong>Phone:</strong> <span id="receiptPhone">-</span></div>
+          <div><strong>Location:</strong> <span id="receiptLocation">-</span></div>
+          <div><strong>Bank / Beneficiary:</strong> <span id="receiptBankInfo">AdoptMe Welfare Foundation • SBI</span></div>
+        </div>
+
+        <p class="receipt-thankyou-text">Thank you for helping us rescue, feed, heal, and protect more animals. 🐾</p>
+
+        <div class="certificate-signatures founder-signatures">
+          <div>
+            <span>Founder Signature</span>
+            <strong>Vishwakarma Ashish</strong>
+            <small>Web Developer</small>
+            <small>BCA Student</small>
+            <div class="signature-line signature-name">Ashish</div>
+          </div>
+          <div>
+            <span>Co-Founder Signature</span>
+            <strong>Pardeshi Sujal</strong>
+            <small>Full stack developer</small>
+            <small>BCA Student</small>
+            <div class="signature-line signature-name">Sujal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-buttons">
+    <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
+  </div>
+
+  <footer class="site-footer enhanced-footer professional-footer">
+    <div class="container footer-top-banner">
+      <div>
+        <h2>Your donation gives rescued pets another chance at life.</h2>
+        <p>Support food, medical care, shelter, and emergency rescue operations.</p>
+      </div>
+      <a href="#donateSection" class="btn btn-primary">Donate Now</a>
+    </div>
+
+    <div class="container footer-grid">
+      <div>
+        <h3>AdoptMe</h3>
+        <p>
+          A professional welfare-focused pet adoption and rescue platform dedicated to verified,
+          responsible, and compassionate rehoming and rescue support.
+        </p>
+
+        <div class="social-icons-real">
+          <a href="https://facebook.com" class="social-facebook" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com" class="social-x" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com" class="social-youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://linkedin.com" class="social-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="adopt.html">Adopt</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="rescue.html">Rescue</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Head Office</h4>
+        <p><strong>AdoptMe Headquarters</strong></p>
+        <p>921, Pet City Kalyan, India</p>
+        <p>Email: support@adoptme.local</p>
+        <p>Phone: +91 9588691368</p>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+        <p class="footer-note-small">Get rescue alerts, success stories, and support updates.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AdoptMe. All rights reserved.</p>
+      <p>Thank you for supporting animal welfare.</p>
+    </div>
+  </footer>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/donation.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

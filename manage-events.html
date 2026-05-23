@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Events – AdoptMe Admin</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="manage-events">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <h2>AdoptMe Admin</h2>
+        <p>Events & Alerts Panel</p>
+      </div>
+
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="manage-users.html">Manage Users</a>
+      <a href="manage-animals.html">Manage Animals</a>
+      <a href="manage-adoptions.html">Manage Adoptions</a>
+      <a href="manage-donations.html">Manage Donations</a>
+      <a href="manage-volunteers.html">Manage Volunteers</a>
+      <a href="manage-rescue.html">Manage Rescue</a>
+      <a href="manage-lostfound.html">Manage Lost & Found</a>
+      <a href="manage-events.html" class="active">Manage Events</a>
+      <a href="../index.html">Back to Site</a>
+    </aside>
+
+    <main class="admin-main">
+      <section class="admin-header-card card">
+        <div>
+          <span class="badge">Event Management</span>
+          <h1>Manage Events, Alerts & Registrations</h1>
+          <p>
+            Create and manage community events, publish platform alerts, and review user registrations
+            for adoption drives, rescue campaigns, volunteer meetups, and welfare gatherings.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid cards-4 admin-mini-stats mt-24">
+        <div class="card admin-stat polished-stat">
+          <h3>Total Events</h3>
+          <p id="adminEventsTotal">0</p>
+          <small>Published events</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Alerts</h3>
+          <p id="adminEventAlertsTotal">0</p>
+          <small>Published notifications</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Registrations</h3>
+          <p id="adminEventRegistrationsTotal">0</p>
+          <small>User registrations</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Upcoming</h3>
+          <p id="adminUpcomingEventsTotal">0</p>
+          <small>Active upcoming events</small>
+        </div>
+      </section>
+
+      <!-- Add Event -->
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Create New Event</h2>
+            <p class="admin-muted">Publish a new community event for the platform</p>
+          </div>
+        </div>
+
+        <form id="adminEventForm" class="form">
+          <div class="admin-form-grid">
+            <div class="admin-form-group">
+              <label for="adminEventTitle">Event Title</label>
+              <input type="text" id="adminEventTitle" required />
+            </div>
+
+            <div class="admin-form-group">
+              <label for="adminEventCategory">Category</label>
+              <select id="adminEventCategory" required>
+                <option value="">Select category</option>
+                <option value="Adoption">Adoption</option>
+                <option value="Rescue">Rescue</option>
+                <option value="Volunteer">Volunteer</option>
+                <option value="Awareness">Awareness</option>
+                <option value="Fundraiser">Fundraiser</option>
+              </select>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="adminEventDate">Date</label>
+              <input type="date" id="adminEventDate" required />
+            </div>
+
+            <div class="admin-form-group">
+              <label for="adminEventCity">City</label>
+              <input type="text" id="adminEventCity" required />
+            </div>
+
+            <div class="admin-form-group">
+              <label for="adminEventVenue">Venue</label>
+              <input type="text" id="adminEventVenue" required />
+            </div>
+
+            <div class="admin-form-group">
+              <label for="adminEventSeats">Seats</label>
+              <input type="number" id="adminEventSeats" min="1" required />
+            </div>
+
+            <div class="admin-form-group">
+              <label for="adminEventStatus">Status</label>
+              <select id="adminEventStatus" required>
+                <option value="Upcoming">Upcoming</option>
+                <option value="Filling Fast">Filling Fast</option>
+                <option value="Closed">Closed</option>
+              </select>
+            </div>
+
+            <div class="admin-form-group" style="grid-column: 1 / -1;">
+              <label for="adminEventDescription">Description</label>
+              <textarea id="adminEventDescription" rows="4" required></textarea>
+            </div>
+          </div>
+
+          <div class="admin-action-group mt-24">
+            <button type="submit" class="btn btn-primary">Add Event</button>
+            <div id="adminEventFormMessage" class="message"></div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Add Alert -->
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Create Event Alert</h2>
+            <p class="admin-muted">Publish event announcements and urgent notices</p>
+          </div>
+        </div>
+
+        <form id="adminEventAlertForm" class="form">
+          <div class="admin-form-grid">
+            <div class="admin-form-group">
+              <label for="adminAlertTitle">Alert Title</label>
+              <input type="text" id="adminAlertTitle" required />
+            </div>
+
+            <div class="admin-form-group">
+              <label for="adminAlertLevel">Alert Level</label>
+              <select id="adminAlertLevel" required>
+                <option value="upcoming">Upcoming</option>
+                <option value="filling">Filling Fast</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+
+            <div class="admin-form-group" style="grid-column: 1 / -1;">
+              <label for="adminAlertMessage">Alert Message</label>
+              <textarea id="adminAlertMessage" rows="4" required></textarea>
+            </div>
+          </div>
+
+          <div class="admin-action-group mt-24">
+            <button type="submit" class="btn btn-primary">Publish Alert</button>
+            <div id="adminAlertFormMessage" class="message"></div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Search + Filter -->
+      <section class="card mt-24 admin-tools-card">
+        <div class="admin-tools-top">
+          <div>
+            <h2>Search & Filter Event Data</h2>
+            <p>Search events, registrations, and alerts by title, city, participant, or event status.</p>
+          </div>
+
+          <div class="admin-action-group">
+            <button id="refreshEventsBtn" class="btn btn-secondary">Refresh</button>
+            <button id="exportEventsBtn" class="btn btn-secondary">Export CSV</button>
+          </div>
+        </div>
+
+        <div class="admin-toolbar">
+          <input type="text" id="eventsSearch" placeholder="Search event title, city, participant, email..." />
+          <select id="eventsStatusFilter">
+            <option value="all">All Statuses</option>
+            <option value="Upcoming">Upcoming</option>
+            <option value="Filling Fast">Filling Fast</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Event List -->
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Event Records</h2>
+            <p class="admin-muted">Published events and registration summaries</p>
+          </div>
+        </div>
+        <div id="adminEventsList" class="stack-list"></div>
+      </section>
+
+      <!-- Alert List -->
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Event Alerts</h2>
+            <p class="admin-muted">Published event announcements and notifications</p>
+          </div>
+        </div>
+        <div id="adminEventAlertsList" class="stack-list"></div>
+      </section>
+
+      <!-- Registration List -->
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Event Registrations</h2>
+            <p class="admin-muted">Participants registered for AdoptMe events</p>
+          </div>
+        </div>
+        <div id="adminEventRegistrationsList" class="stack-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../adminjs/main.js"></script>
+  <script src="../adminjs/auth.js"></script>
+  <script src="../adminjs/admin-events.js"></script>
+</body>
+</html>

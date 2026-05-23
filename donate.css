@@ -1,0 +1,456 @@
+/* =========================================================
+   Donate Page - Premium Styling
+   ========================================================= */
+
+.donate-hero {
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.donate-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.donate-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transform: scale(1.03);
+}
+
+.donate-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(20, 18, 16, 0.72) 0%, rgba(20, 18, 16, 0.38) 44%, rgba(20, 18, 16, 0.12) 100%);
+}
+
+.donate-hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.donate-hero-text {
+  max-width: 700px;
+  color: #fff;
+  padding: 60px 0;
+}
+
+.donate-hero-text h1 {
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  line-height: 1.1;
+  margin: 16px 0;
+  font-weight: 800;
+}
+
+.donate-hero-text p {
+  font-size: 1.05rem;
+  margin-bottom: 22px;
+  color: rgba(255,255,255,0.92);
+}
+
+/* Layout */
+.donate-layout {
+  align-items: flex-start;
+}
+
+.donate-form-card,
+.donate-side-card {
+  height: 100%;
+}
+
+.donate-form-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf4 100%);
+  border: 1px solid rgba(139, 94, 60, 0.08);
+}
+
+.donate-side-card {
+  background: linear-gradient(180deg, #fff 0%, #fffdfa 100%);
+  border: 1px solid rgba(139, 94, 60, 0.08);
+}
+
+/* Quick amount */
+.quick-amounts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.quick-amount-btn {
+  border: none;
+  background: #f0dfc8;
+  color: var(--primary);
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: var(--transition);
+  box-shadow: 0 2px 10px rgba(139, 94, 60, 0.08);
+}
+
+.quick-amount-btn:hover,
+.quick-amount-btn.active {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Payment panels */
+.payment-panel {
+  margin-bottom: 18px;
+  display: none;
+}
+
+.payment-panel.show {
+  display: block;
+}
+
+.payment-panel h3 {
+  color: var(--primary);
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.upi-box,
+.bank-box {
+  border: 1px solid rgba(139, 94, 60, 0.12);
+  background: linear-gradient(180deg, #fff 0%, #fffaf4 100%);
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(139, 94, 60, 0.05);
+}
+
+.upi-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.upi-top p,
+.bank-box p {
+  margin-bottom: 8px;
+}
+
+/* UPI logos */
+.upi-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.upi-logo {
+  width: 78px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid rgba(139, 94, 60, 0.1);
+  border-radius: 12px;
+  padding: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(139, 94, 60, 0.06);
+}
+
+.upi-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+/* UPI action buttons */
+.upi-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.upi-app-btn {
+  border: none;
+  background: #dbc29c;
+  color: var(--primary);
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.upi-app-btn.active,
+.upi-app-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.upi-app-redirect {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #fcf7f0;
+  border: 1px solid rgba(139, 94, 60, 0.1);
+  display: grid;
+  gap: 10px;
+}
+
+.upi-note {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+/* OTP verification cards */
+.verification-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.verification-card {
+  background: #fcf7f0;
+  border: 1px solid rgba(139, 94, 60, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 18px rgba(139, 94, 60, 0.05);
+}
+
+.verification-card h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.verification-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.verification-actions input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(139, 94, 60, 0.18);
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* Scanner */
+.scanner-box {
+  width: 100%;
+  min-height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+  border: 2px dashed rgba(139, 94, 60, 0.22);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.scanner-box::after {
+  content: "Scanner Preview";
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  backdrop-filter: blur(4px);
+}
+
+.scanner-box video {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #111;
+}
+
+.scanner-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+/* QR */
+.qr-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.qr-box img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #fff;
+  padding: 10px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(139, 94, 60, 0.08);
+}
+
+/* Payment input fields */
+.payment-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.payment-fields-grid input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(139, 94, 60, 0.18);
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* Receipt */
+.receipt-thankyou-text {
+  margin-top: 14px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.donation-receipt-card {
+  width: 900px;
+}
+
+.receipt-preview-modal {
+  width: min(980px, 100%);
+}
+
+.receipt-preview-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.receipt-preview-wrapper .donation-receipt-card {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Paytm style receipt cuts */
+.paytm-style-receipt {
+  position: relative;
+}
+
+.receipt-corner {
+  position: absolute;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  background: var(--background);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.receipt-corner-left {
+  left: -13px;
+}
+
+.receipt-corner-right {
+  right: -13px;
+}
+
+/* Dark mode */
+body.dark-theme .donate-hero-overlay {
+  background: linear-gradient(90deg, rgba(5,5,5,0.78) 0%, rgba(10,10,10,0.42) 42%, rgba(10,10,10,0.18) 100%);
+}
+
+body.dark-theme .quick-amount-btn,
+body.dark-theme .upi-app-btn {
+  background: #4b392b;
+  color: #f1e9de;
+}
+
+body.dark-theme .quick-amount-btn:hover,
+body.dark-theme .quick-amount-btn.active,
+body.dark-theme .upi-app-btn:hover,
+body.dark-theme .upi-app-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+body.dark-theme .upi-box,
+body.dark-theme .bank-box,
+body.dark-theme .verification-card,
+body.dark-theme .upi-app-redirect,
+body.dark-theme .donate-form-card,
+body.dark-theme .donate-side-card {
+  background: linear-gradient(180deg, #2a241f 0%, #302922 100%);
+}
+
+body.dark-theme .verification-actions input,
+body.dark-theme .payment-fields-grid input {
+  background: #342d27;
+  color: #f1e9de;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+body.dark-theme .upi-logo {
+  background: #fff;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .donate-hero {
+    min-height: 74vh;
+  }
+
+  .verification-row {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-fields-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .donate-hero {
+    min-height: 78vh;
+  }
+
+  .donate-hero-text {
+    padding: 40px 0;
+  }
+
+  .donate-hero-text h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .upi-actions,
+  .upi-logos {
+    flex-direction: column;
+  }
+
+  .upi-app-btn,
+  .upi-logo {
+    width: 100%;
+  }
+
+  .upi-top {
+    flex-direction: column;
+  }
+
+  .qr-box img {
+    width: 180px;
+    height: 180px;
+  }
+}

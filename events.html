@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events – AdoptMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="chatbot/chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    .events-hero {
+      position: relative;
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .events-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .events-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .events-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(22, 18, 15, 0.74), rgba(139, 94, 60, 0.55));
+      z-index: 2;
+    }
+
+    .events-hero-inner {
+      position: relative;
+      z-index: 3;
+      color: #fff;
+      padding: 70px 0;
+    }
+
+    .events-hero-text {
+      max-width: 760px;
+    }
+
+    .events-hero-text h1 {
+      font-size: clamp(2.1rem, 4vw, 3.6rem);
+      line-height: 1.15;
+      margin: 14px 0 16px;
+      color: #fff;
+    }
+
+    .events-hero-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.92);
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .home-hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .home-hero-badges span {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    .event-alert-box {
+      background: #fff8e7;
+      border: 1px solid rgba(139, 94, 60, 0.12);
+      border-radius: 16px;
+      padding: 16px 18px;
+      color: #7a5a3d;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .event-card-modern {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(139, 94, 60, 0.1);
+      background: linear-gradient(180deg, #fff 0%, #fffdfa 100%);
+    }
+
+    .event-card-modern h3 {
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .event-meta span {
+      background: #f7efe3;
+      color: var(--primary);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .event-alert-item {
+      border-left: 4px solid var(--primary);
+      background: #fffaf4;
+    }
+
+    .event-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .event-status-badge.upcoming {
+      background: #e7f8ea;
+      color: #1f7a34;
+    }
+
+    .event-status-badge.filling {
+      background: #fff3dc;
+      color: #9b6a00;
+    }
+
+    .event-status-badge.closed {
+      background: #fde8e8;
+      color: #b03030;
+    }
+  </style>
+</head>
+<body data-page="events">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">Community Events & Alerts</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="adopt.html">Adopt</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="rescue.html">Rescue</a></li>
+        <li><a href="lostfound.html">Lost & Found</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="events-hero">
+      <div class="events-hero-bg">
+        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80" alt="AdoptMe community pet event" />
+      </div>
+      <div class="events-hero-overlay"></div>
+
+      <div class="container events-hero-inner">
+        <div class="events-hero-text">
+          <span class="badge">AdoptMe Community Events</span>
+          <h1>Join adoption drives, awareness programs, rescue campaigns, and welfare community gatherings.</h1>
+          <p>
+            Stay connected with upcoming AdoptMe events, register in advance, receive platform event alerts,
+            and participate in programs that support rescued animals, adopters, volunteers, and donors.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#eventsSection" class="btn btn-primary">Explore Events</a>
+            <a href="#eventRegistrationSection" class="btn btn-secondary">Register Now</a>
+          </div>
+
+          <div class="home-hero-badges">
+            <span>✔ Event Registration</span>
+            <span>✔ Dashboard Synced</span>
+            <span>✔ Admin Event Records</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section">
+      <div class="container">
+        <div class="grid cards-4">
+          <div class="card dynamic-card stat-card-modern">
+            <h3>50+</h3>
+            <p>Community Events</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>1000+</h3>
+            <p>Participants Joined</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>Rescue</h3>
+            <p>Awareness Campaigns</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>Adoption</h3>
+            <p>Meetups & Drives</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Alerts -->
+    <section class="section alt-bg">
+      <div class="container">
+        <div class="section-head">
+          <h2>Event Alerts</h2>
+          <p>Track important upcoming events and urgent community announcements.</p>
+        </div>
+
+        <div id="eventAlertsList" class="stack-list"></div>
+      </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="section" id="eventsSection">
+      <div class="container">
+        <div class="section-head">
+          <h2>Upcoming Events</h2>
+          <p>Join events that bring together adopters, donors, volunteers, and rescued pets.</p>
+        </div>
+
+        <div class="grid cards-3" id="eventsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Registration -->
+    <section class="section" id="eventRegistrationSection">
+      <div class="container grid two-col">
+        <div class="card">
+          <h2>Register for an Event</h2>
+
+          <div class="event-alert-box">
+            Please register with valid personal details. Your event participation record will appear in your dashboard.
+          </div>
+
+          <form id="eventForm" class="form" novalidate>
+            <div class="form-section-title">Participant Details</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="eventName">Your Name *</label>
+                <input type="text" id="eventName" required />
+              </div>
+              <div class="form-group">
+                <label for="eventEmail">Email *</label>
+                <input type="email" id="eventEmail" required />
+                <small class="field-error" id="eventEmailError"></small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="eventPhone">Phone *</label>
+                <input type="tel" id="eventPhone" required />
+                <small class="field-error" id="eventPhoneError"></small>
+              </div>
+              <div class="form-group">
+                <label for="eventCity">City *</label>
+                <input type="text" id="eventCity" required />
+              </div>
+            </div>
+
+            <div class="form-section-title">Event Selection</div>
+
+            <div class="form-group">
+              <label for="eventSelect">Choose Event *</label>
+              <select id="eventSelect" required></select>
+            </div>
+
+            <div class="form-group">
+              <label for="eventRole">Participation Type *</label>
+              <select id="eventRole" required>
+                <option value="">Select participation type</option>
+                <option value="Attendee">Attendee</option>
+                <option value="Volunteer Support">Volunteer Support</option>
+                <option value="Donor Guest">Donor Guest</option>
+                <option value="Adoption Enquiry Visitor">Adoption Enquiry Visitor</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="eventNote">Additional Note</label>
+              <textarea id="eventNote" rows="4" placeholder="Mention any support, interest, or special requirement..."></textarea>
+            </div>
+
+            <label class="consent-item consent-block">
+              <input type="checkbox" id="eventConsent" required />
+              <span>I confirm that my registration details are correct and I agree to event participation guidelines. *</span>
+            </label>
+            <small class="field-error" id="eventConsentError"></small>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+            <div id="eventMessage" class="message"></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Recent Event Registrations</h2>
+          <div id="eventRegistrationsList" class="stack-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scroll Buttons -->
+  <div class="scroll-buttons">
+    <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer enhanced-footer professional-footer">
+    <div class="container footer-top-banner">
+      <div>
+        <h2>Be part of the AdoptMe community movement.</h2>
+        <p>Join awareness drives, meet rescued pets, support welfare events, and make an impact together.</p>
+      </div>
+      <a href="#eventRegistrationSection" class="btn btn-primary">Register for Event</a>
+    </div>
+
+    <div class="container footer-grid">
+      <div>
+        <h3>AdoptMe</h3>
+        <p>
+          A professional welfare-focused pet adoption and rescue platform dedicated to verified,
+          responsible, and compassionate rescue, rehoming, community events, and welfare support.
+        </p>
+
+        <div class="social-icons-real">
+          <a href="https://facebook.com" class="social-facebook" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com" class="social-x" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com" class="social-youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://linkedin.com" class="social-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Important Links</h4>
+        <ul class="footer-links">
+          <li><a href="adopt.html">Adopt</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="rescue.html">Rescue</a></li>
+          <li><a href="lostfound.html">Lost & Found</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Event Support</h4>
+        <p><strong>AdoptMe Events Desk</strong></p>
+        <p>921, Pet City Kalyan, India</p>
+        <p>Email: support@adoptme.local</p>
+        <p>Phone: +91 9588691368</p>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+        <p class="footer-note-small">Get event alerts, rescue updates, and welfare stories.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AdoptMe. All rights reserved.</p>
+      <p>Thank you for supporting community-led animal welfare events.</p>
+    </div>
+  </footer>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/events.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

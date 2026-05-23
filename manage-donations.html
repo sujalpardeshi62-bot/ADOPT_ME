@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Donations – AdoptMe Admin</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="manage-donations">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <h2>AdoptMe Admin</h2>
+        <p>Donation Review Panel</p>
+      </div>
+
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="manage-users.html">Manage Users</a>
+      <a href="manage-animals.html">Manage Animals</a>
+      <a href="manage-adoptions.html">Manage Adoptions</a>
+      <a href="manage-donations.html" class="active">Manage Donations</a>
+      <a href="manage-volunteers.html">Manage Volunteers</a>
+      <a href="manage-rescue.html">Manage Rescue</a>
+      <a href="manage-lostfound.html">Manage Lost & Found</a>
+      <a href="manage-events.html">Manage Events</a>
+      <a href="../index.html">Back to Site</a>
+    </aside>
+
+    <main class="admin-main">
+      <section class="admin-header-card card">
+        <div>
+          <span class="badge">Donation Management</span>
+          <h1>Manage Donations</h1>
+          <p>
+            Review donor records, payment modes, UPI simulation data, OTP verification,
+            live location, wallet/card/net banking details, and export donation records.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid cards-4 admin-mini-stats mt-24">
+        <div class="card admin-stat polished-stat">
+          <h3>Total Donations</h3>
+          <p id="adminDonationTotal">0</p>
+          <small>All received records</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Total Amount</h3>
+          <p id="adminDonationAmount">₹0</p>
+          <small>Combined contributions</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>UPI Payments</h3>
+          <p id="adminDonationUPI">0</p>
+          <small>UPI payment records</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Monthly Plans</h3>
+          <p id="adminDonationMonthly">0</p>
+          <small>Recurring donation types</small>
+        </div>
+      </section>
+
+      <section class="card mt-24 admin-tools-card">
+        <div class="admin-tools-top">
+          <div>
+            <h2>Search & Filter Donations</h2>
+            <p>Find donations by donor name, email, city, payment method, UPI app, bank name, or wallet provider.</p>
+          </div>
+
+          <div class="admin-action-group">
+  <button id="refreshDonationsBtn" class="btn btn-secondary">
+    Refresh
+  </button>
+  <button id="exportDonationsBtn" class="btn btn-secondary">
+    Export CSV
+  </button>
+</div>
+        </div>
+
+        <div class="admin-toolbar">
+          <input type="text" id="donationSearch" placeholder="Search donor name, email, city, payment app, bank..." />
+          <select id="donationTypeFilter">
+            <option value="all">All Types</option>
+            <option value="One-time">One-time</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Emergency Rescue">Emergency Rescue</option>
+            <option value="Medical Care">Medical Care</option>
+            <option value="Shelter Food">Shelter Food</option>
+            <option value="General Support">General Support</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Donation Records</h2>
+            <p class="admin-muted">Verified donor entries, receipt records, and transaction simulation details</p>
+          </div>
+        </div>
+
+        <div id="adminDonationsList" class="stack-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="adminDonationModal">
+    <div class="modal-content card adoption-admin-modal polished-admin-modal">
+      <button class="modal-close" id="closeAdminDonationModal">&times;</button>
+      <div id="adminDonationModalContent"></div>
+    </div>
+  </div>
+
+  <script src="../adminjs/main.js"></script>
+  <script src="../adminjs/auth.js"></script>
+  <script src="../adminjs/admin-donations.js"></script>
+</body>
+</html>

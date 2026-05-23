@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adopt Me Backend Test</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 50px auto; padding: 20px; }
+        input, button { padding: 10px; margin: 5px; width: 100%; }
+        button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+        .success { background: #d4edda; color: green; padding: 10px; margin: 10px 0; }
+        .error { background: #f8d7da; color: red; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🐾 Adopt Me - Backend Test</h1>
+    
+    <div id="status">Testing connection...</div>
+    
+    <h3>Add a Pet</h3>
+    <input type="text" id="name" placeholder="Pet Name">
+    <select id="type">
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+    </select>
+    <input type="number" id="age" placeholder="Age">
+    <button onclick="addPet()">Save to MongoDB Compass</button>
+    <div id="result"></div>
+    
+    <hr>
+    <button onclick="viewPets()">View All Pets</button>
+    <div id="pets"></div>
+
+    <script>
+        async function checkConnection() {
+            const response = await fetch('http://localhost:5000/api/test');
+            const data = await response.json();
+            document.getElementById('status').innerHTML = `
+                <div class="success">
+                    ✅ ${data.message}<br>
+                    Database: ${data.database}
+                </div>
+            `;
+        }
+        
+        async function addPet() {
+            const pet = {
+                name: document.getElementById('name').value,
+                type: document.getElementById('type').value,
+                age: parseInt(document.getElementById('age').value)
+            };
+            
+            const response = await fetch('http://localhost:5000/api/pets/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(pet)
+            });
+            const result = await response.json();
+            
+            if (result.success) {
+                document.getElementById('result').innerHTML = `<div class="success">✅ ${result.message}</div>`;
+                document.getElementById('name').value = '';
+                document.getElementById('age').value = '';
+                viewPets();
+            }
+        }
+        
+        async function viewPets() {
+            const response = await fetch('http://localhost:5000/api/pets/all');
+            const result = await response.json();
+            
+            if (result.success && result.data.length > 0) {
+                let html = '<div class="success"><strong>Pets in Database:</strong><br>';
+                result.data.forEach(pet => {
+                    html += `🐾 ${pet.name} (${pet.type}, ${pet.age} years)<br>`;
+                });
+                html += '</div>';
+                document.getElementById('pets').innerHTML = html;
+            }
+        }
+        
+        checkConnection();
+        viewPets();
+    </script>
+</body>
+</html>

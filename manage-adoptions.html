@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Adoptions – AdoptMe Admin</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="manage-adoptions">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <h2>AdoptMe Admin</h2>
+        <p>Adoption Review Panel</p>
+      </div>
+
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="manage-users.html">Manage Users</a>
+      <a href="manage-animals.html">Manage Animals</a>
+      <a href="manage-adoptions.html" class="active">Manage Adoptions</a>
+      <a href="manage-donations.html">Manage Donations</a>
+      <a href="manage-volunteers.html">Manage Volunteers</a>
+      <a href="manage-rescue.html">Manage Rescue</a>
+      <a href="manage-lostfound.html">Manage Lost & Found</a>
+      <a href="manage-events.html">Manage Events</a>
+      <a href="../index.html">Back to Site</a>
+    </aside>
+
+    <main class="admin-main">
+      <section class="admin-header-card card">
+        <div>
+          <span class="badge">Verified Adoption Control Panel</span>
+          <h1>Manage Adoption Applications</h1>
+          <p>
+            Review applicant identity, Aadhaar number, address, live location,
+            housing readiness, uploaded documents, consent declarations, and approval status.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid cards-4 admin-mini-stats mt-24">
+        <div class="card admin-stat polished-stat">
+          <h3>Total Requests</h3>
+          <p id="adminAdoptionTotal">0</p>
+          <small>All submitted applications</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Pending</h3>
+          <p id="adminAdoptionPending">0</p>
+          <small>Awaiting review</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Approved</h3>
+          <p id="adminAdoptionApproved">0</p>
+          <small>Ready for next steps</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Rejected</h3>
+          <p id="adminAdoptionRejected">0</p>
+          <small>Declined applications</small>
+        </div>
+      </section>
+
+      <section class="card mt-24 admin-tools-card">
+        <div class="admin-tools-top">
+          <div>
+            <h2>Search & Filter Applications</h2>
+            <p>Quickly find applications by pet, applicant, email, city, state, ID type, or Aadhaar.</p>
+          </div>
+
+          <div class="admin-action-group">
+  <button id="refreshAdoptionsBtn" class="btn btn-secondary">
+    Refresh
+  </button>
+  <button id="exportAdoptionsBtn" class="btn btn-secondary">
+    Export CSV
+  </button>
+</div>
+        </div>
+
+        <div class="admin-toolbar">
+          <input type="text" id="adoptionSearch" placeholder="Search by name, pet, email, city, state, ID type, Aadhaar..." />
+          <select id="adoptionStatusFilter">
+            <option value="all">All Statuses</option>
+            <option value="Pending Review">Pending Review</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Adoption Applications</h2>
+            <p class="admin-muted">Detailed welfare screening and verification records</p>
+          </div>
+        </div>
+
+        <div id="adminAdoptionsList" class="stack-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="adminAdoptionModal">
+    <div class="modal-content card adoption-admin-modal polished-admin-modal">
+      <button class="modal-close" id="closeAdminAdoptionModal">&times;</button>
+      <div id="adminAdoptionModalContent"></div>
+    </div>
+  </div>
+
+  <script src="../adminjs/main.js"></script>
+  <script src="../adminjs/auth.js"></script>
+  <script src="../adminjs/admin-adoptions.js"></script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+.dashboard-page {
+  padding: 40px 0 70px;
+}
+
+.dashboard-hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dashboard-role {
+  background: var(--secondary);
+  color: var(--primary);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.dash-card {
+  text-align: center;
+}
+
+.dash-number {
+  font-size: 2.4rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.dashboard-panel h2 {
+  margin-bottom: 16px;
+  color: var(--primary);
+}
+
+.dashboard-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.dashboard-muted {
+  color: #666;
+  margin-top: 4px;
+}
+
+.dashboard-certificate-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dashboard-certificate-preview {
+  margin-top: 10px;
+}
+
+.dashboard-certificate-card,
+.dashboard-donation-card {
+  position: relative;
+  background: linear-gradient(180deg, #fffaf4 0%, #ffffff 100%);
+  border: 4px solid var(--primary);
+  border-radius: 22px;
+  padding: 30px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.dashboard-certificate-card::before,
+.dashboard-donation-card::before {
+  content: "🐾 AdoptMe";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  font-weight: 800;
+  color: rgba(139, 94, 60, 0.05);
+  transform: rotate(-22deg);
+  pointer-events: none;
+}
+
+.dashboard-certificate-card h2,
+.dashboard-certificate-card h3,
+.dashboard-certificate-card h4,
+.dashboard-donation-card h2,
+.dashboard-donation-card h3,
+.dashboard-donation-card h4 {
+  color: var(--primary);
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-certificate-subtitle {
+  color: #666;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-certificate-meta {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-certificate-stamp {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: 3px solid var(--primary);
+  color: var(--primary);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  transform: rotate(-12deg);
+  background: rgba(216, 195, 165, 0.16);
+  z-index: 3;
+}
+
+.dashboard-certificate-signatures {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-certificate-signatures div {
+  text-align: center;
+  flex: 1;
+}
+
+.dashboard-certificate-signatures strong,
+.dashboard-certificate-signatures small {
+  display: block;
+  margin-top: 4px;
+}
+
+.dashboard-signature-line {
+  margin-top: 10px;
+  font-family: "Brush Script MT", cursive;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.dashboard-donation-card .dashboard-certificate-meta div {
+  background: #fcf5ec;
+  border: 1px solid rgba(139, 94, 60, 0.08);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+/* User Profile Card */
+.dashboard-user-profile-wrap {
+  display: grid;
+  gap: 18px;
+}
+
+.dashboard-user-profile-box {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  align-items: start;
+  background: linear-gradient(180deg, #fff 0%, #fffdfa 100%);
+  border: 1px solid rgba(139, 94, 60, 0.1);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.dashboard-user-photo-box {
+  text-align: center;
+}
+
+.dashboard-user-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(139, 94, 60, 0.18);
+  background: #f7efe3;
+}
+
+.dashboard-user-photo-placeholder {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background: #f7efe3;
+  border: 4px solid rgba(139, 94, 60, 0.18);
+  color: var(--primary);
+  font-size: 3rem;
+}
+
+.dashboard-user-name {
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.dashboard-user-role-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f7efe3;
+  color: var(--primary);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.dashboard-user-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.dashboard-user-info-item {
+  background: #fcf7f0;
+  border: 1px solid rgba(139, 94, 60, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.dashboard-user-info-item strong {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.dashboard-user-bio-box {
+  margin-top: 14px;
+  background: #fffaf2;
+  border: 1px solid rgba(139, 94, 60, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.dashboard-user-bio-box strong {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* Volunteer preview */
+.dashboard-preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.dashboard-preview-count {
+  font-weight: 700;
+  color: #8B5E3C;
+}
+
+.dashboard-preview-nav-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.volunteer-id-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border: 8px solid #8B5E3C;
+  border-radius: 24px;
+  padding: 40px;
+  text-align: center;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.certificate-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 78px;
+  font-weight: 800;
+  color: rgba(139, 94, 60, 0.06);
+  transform: rotate(-24deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.certificate-stamp {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: 3px solid #8B5E3C;
+  color: #8B5E3C;
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  transform: rotate(-12deg);
+  background: rgba(216, 195, 165, 0.2);
+  z-index: 2;
+}
+
+.certificate-header,
+.certificate-subtitle,
+.certificate-body {
+  position: relative;
+  z-index: 2;
+}
+
+.certificate-header {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #8B5E3C;
+  margin-bottom: 8px;
+}
+
+.certificate-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 26px;
+}
+
+.certificate-body h2,
+.certificate-body h3 {
+  color: #8B5E3C;
+}
+
+.certificate-details {
+  margin: 26px 0;
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+
+.certificate-details div {
+  background: #f8f5f1;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+.certificate-signatures {
+  margin-top: 34px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.signature-name {
+  font-family: "Brush Script MT", cursive;
+  font-size: 1.5rem;
+  color: #8B5E3C;
+  margin-top: 10px;
+}
+
+.certificate-signatures strong,
+.certificate-signatures small {
+  display: block;
+  margin-top: 4px;
+}
+
+.receipt-thankyou-text {
+  margin-top: 14px;
+  font-weight: 700;
+  color: #8B5E3C;
+}
+
+/* Rescue */
+.rescue-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.rescue-badge.high {
+  background: #fde8e8;
+  color: #b03030;
+}
+
+.rescue-badge.medium {
+  background: #fff3dc;
+  color: #9b6a00;
+}
+
+.rescue-badge.low {
+  background: #e7f8ea;
+  color: #1f7a34;
+}
+
+/* Lost & Found */
+.lostfound-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.lostfound-type-badge.lost {
+  background: #fde8e8;
+  color: #b03030;
+}
+
+.lostfound-type-badge.found {
+  background: #e7f8ea;
+  color: #1f7a34;
+}
+
+.match-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: #fff3dc;
+  color: #9b6a00;
+}
+
+/* Events */
+.event-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.event-status-badge.upcoming {
+  background: #e7f8ea;
+  color: #1f7a34;
+}
+
+.event-status-badge.filling {
+  background: #fff3dc;
+  color: #9b6a00;
+}
+
+.event-status-badge.closed {
+  background: #fde8e8;
+  color: #b03030;
+}
+
+body.dark-theme .dashboard-certificate-card,
+body.dark-theme .dashboard-donation-card,
+body.dark-theme .dashboard-user-profile-box {
+  background: #2a241f;
+  color: #f1e9de;
+}
+
+body.dark-theme .dashboard-certificate-subtitle,
+body.dark-theme .dashboard-muted {
+  color: #ddd1c2;
+}
+
+body.dark-theme .dashboard-donation-card .dashboard-certificate-meta div,
+body.dark-theme .dashboard-user-info-item,
+body.dark-theme .dashboard-user-bio-box {
+  background: #342d27;
+  border-color: rgba(255,255,255,0.06);
+}
+
+body.dark-theme .dashboard-user-photo-placeholder {
+  background: #342d27;
+}
+
+@media (max-width: 767px) {
+  .dashboard-certificate-signatures {
+    flex-direction: column;
+  }
+
+  .dashboard-certificate-actions {
+    width: 100%;
+  }
+
+  .dashboard-certificate-actions .btn {
+    width: 100%;
+  }
+
+  .dashboard-user-profile-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .dashboard-user-info-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .volunteer-id-card {
+    padding: 22px;
+  }
+
+  .certificate-header {
+    font-size: 1.8rem;
+  }
+
+  .certificate-watermark {
+    font-size: 46px;
+  }
+}

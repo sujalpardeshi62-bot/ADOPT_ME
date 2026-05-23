@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Rescue Requests – AdoptMe Admin</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="manage-rescue">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <h2>AdoptMe Admin</h2>
+        <p>Emergency Rescue Panel</p>
+      </div>
+
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="manage-users.html">Manage Users</a>
+      <a href="manage-animals.html">Manage Animals</a>
+      <a href="manage-adoptions.html">Manage Adoptions</a>
+      <a href="manage-donations.html">Manage Donations</a>
+      <a href="manage-volunteers.html">Manage Volunteers</a>
+      <a href="manage-rescue.html" class="active">Manage Rescue</a>
+      <a href="manage-lostfound.html">Manage Lost & Found</a>
+      <a href="manage-events.html">Manage Events</a>
+      <a href="../index.html">Back to Site</a>
+    </aside>
+
+    <main class="admin-main">
+      <section class="admin-header-card card">
+        <div>
+          <span class="badge">Emergency Rescue Control</span>
+          <h1>Manage Rescue Requests</h1>
+          <p>
+            Review emergency rescue requests with rescuer details, exact location, live coordinates,
+            captured animal photo proof, emergency level, field condition, and instant response status.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid cards-4 admin-mini-stats mt-24">
+        <div class="card admin-stat polished-stat">
+          <h3>Total Rescue Requests</h3>
+          <p id="adminRescueTotal">0</p>
+          <small>All logged emergencies</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>High Priority</h3>
+          <p id="adminRescueHigh">0</p>
+          <small>Urgent rescue alerts</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>In Progress</h3>
+          <p id="adminRescueProgress">0</p>
+          <small>Active response cases</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Rescued / Closed</h3>
+          <p id="adminRescueClosed">0</p>
+          <small>Completed cases</small>
+        </div>
+      </section>
+
+      <section class="card mt-24 admin-tools-card">
+        <div class="admin-tools-top">
+          <div>
+            <h2>Search & Filter Rescue Requests</h2>
+            <p>Find rescue reports by rescuer, phone, animal type, location, landmark, request ID, or emergency condition.</p>
+          </div>
+
+          <div class="admin-action-group">
+            <button id="refreshRescueBtn" class="btn btn-secondary">Refresh</button>
+            <button id="exportRescueBtn" class="btn btn-secondary">Export CSV</button>
+          </div>
+        </div>
+
+        <div class="admin-toolbar">
+          <input type="text" id="rescueSearch" placeholder="Search rescuer, phone, location, landmark, animal, request ID..." />
+          <select id="rescueLevelFilter">
+            <option value="all">All Emergency Levels</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+          <select id="rescueStatusFilter">
+            <option value="all">All Statuses</option>
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Rescued">Rescued</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Emergency Rescue Records</h2>
+            <p class="admin-muted">Live emergency rescue submissions and verification details</p>
+          </div>
+        </div>
+
+        <div id="adminRescueList" class="stack-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="adminRescueModal">
+    <div class="modal-content card adoption-admin-modal polished-admin-modal">
+      <button class="modal-close" id="closeAdminRescueModal">&times;</button>
+      <div id="adminRescueModalContent"></div>
+    </div>
+  </div>
+
+  <script src="../adminjs/main.js"></script>
+  <script src="../adminjs/auth.js"></script>
+  <script src="../adminjs/admin-rescue.js"></script>
+</body>
+</html>

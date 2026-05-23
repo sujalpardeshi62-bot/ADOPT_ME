@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emergency Rescue – AdoptMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="chatbot/chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    .rescue-hero {
+      position: relative;
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .rescue-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .rescue-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .rescue-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(31, 20, 15, 0.72), rgba(139, 94, 60, 0.58));
+      z-index: 2;
+    }
+
+    .rescue-hero-inner {
+      position: relative;
+      z-index: 3;
+      color: #fff;
+      padding: 70px 0;
+    }
+
+    .rescue-hero-text {
+      max-width: 760px;
+    }
+
+    .rescue-hero-text h1 {
+      font-size: clamp(2.1rem, 4vw, 3.6rem);
+      line-height: 1.15;
+      margin: 14px 0 16px;
+      color: #fff;
+    }
+
+    .rescue-hero-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.92);
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .home-hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .home-hero-badges span {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    .rescue-info-card h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .rescue-alert-box {
+      background: #fff0f0;
+      border: 1px solid rgba(200, 95, 95, 0.18);
+      color: #b03030;
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .camera-box,
+    .location-box {
+      background: #fcf7f0;
+      border: 1px solid rgba(139, 94, 60, 0.1);
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .camera-preview {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 12px;
+      border: 1px solid rgba(139, 94, 60, 0.12);
+      background: #000;
+    }
+
+    .captured-preview {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 12px;
+      margin-top: 12px;
+      border: 1px solid rgba(139, 94, 60, 0.12);
+      display: none;
+    }
+
+    .rescue-form-actions,
+    .camera-actions,
+    .rescue-call-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .rescue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .rescue-badge.high {
+      background: #fde8e8;
+      color: #b03030;
+    }
+
+    .rescue-badge.medium {
+      background: #fff3dc;
+      color: #9b6a00;
+    }
+
+    .rescue-badge.low {
+      background: #e7f8ea;
+      color: #1f7a34;
+    }
+
+    .rescue-note-box {
+      background: #fff8e7;
+      border: 1px dashed rgba(139, 94, 60, 0.2);
+      border-radius: 14px;
+      padding: 14px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .rescue-side-card .list-item {
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 767px) {
+      .rescue-hero {
+        min-height: auto;
+      }
+
+      .rescue-hero-inner {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body data-page="rescue">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">Emergency Rescue Support</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="adopt.html">Adopt</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="rescue.html" class="active">Rescue</a></li>
+        <li><a href="lostfound.html">Lost & Found</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="rescue-hero">
+      <div class="rescue-hero-bg">
+        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80" alt="Emergency rescue support for animals" />
+      </div>
+      <div class="rescue-hero-overlay"></div>
+
+      <div class="container rescue-hero-inner">
+        <div class="rescue-hero-text">
+          <span class="badge">Emergency Animal Rescue</span>
+          <h1>Report injured, abandoned, trapped, or endangered animals with verified rescue details.</h1>
+          <p>
+            Share your live location, exact emergency description, and real-time animal photo proof
+            so the AdoptMe rescue team can coordinate urgent support and take faster action.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#rescueFormSection" class="btn btn-primary">Report Emergency</a>
+            <a href="tel:+919588691368" class="btn btn-secondary">Call Rescue Helpline</a>
+          </div>
+
+          <div class="home-hero-badges">
+            <span>✔ Live Location Capture</span>
+            <span>✔ Camera Verification</span>
+            <span>✔ Dashboard + Admin Synced</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="section">
+      <div class="container">
+        <div class="grid cards-4">
+          <div class="card dynamic-card stat-card-modern">
+            <h3>24/7</h3>
+            <p>Emergency Response Support</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>500+</h3>
+            <p>Animals Helped</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>Fast</h3>
+            <p>Location-Based Action</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>Verified</h3>
+            <p>Photo + Contact Submission</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rescue Form -->
+    <section class="section" id="rescueFormSection">
+      <div class="container grid two-col">
+        <div class="card">
+          <div class="section-head left">
+            <h1>Emergency Rescue Request</h1>
+            <p>Submit verified rescue details for rapid animal welfare response.</p>
+          </div>
+
+          <div class="rescue-alert-box">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            High priority rescue cases should include exact location, phone number, emergency level, and animal photo proof.
+          </div>
+
+          <div class="rescue-call-actions">
+            <a href="tel:+919588691368" class="btn btn-primary">
+              <i class="fa-solid fa-phone"></i> Emergency Call Now
+            </a>
+            <button type="button" class="btn btn-secondary" id="shareLocationBtn">
+              <i class="fa-solid fa-location-crosshairs"></i> Get My Location
+            </button>
+          </div>
+
+          <form id="rescueForm" class="form" novalidate>
+            <div class="form-section-title">Rescuer Information</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rescuerName">Your Name *</label>
+                <input type="text" id="rescuerName" required />
+              </div>
+              <div class="form-group">
+                <label for="rescuerPhone">Phone Number *</label>
+                <input type="tel" id="rescuerPhone" required />
+                <small class="field-error" id="rescuerPhoneError"></small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rescuerEmail">Email</label>
+                <input type="email" id="rescuerEmail" />
+                <small class="field-error" id="rescuerEmailError"></small>
+              </div>
+              <div class="form-group">
+                <label for="emergencyContactPerson">Alternate Emergency Contact</label>
+                <input type="text" id="emergencyContactPerson" placeholder="Name / Phone" />
+              </div>
+            </div>
+
+            <div class="form-section-title">Emergency Details</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="animalType">Animal Type *</label>
+                <input type="text" id="animalType" placeholder="Dog, Cat, Bird..." required />
+              </div>
+              <div class="form-group">
+                <label for="emergencyLevel">Emergency Level *</label>
+                <select id="emergencyLevel" required>
+                  <option value="">Select level</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="animalCondition">Animal Condition *</label>
+                <select id="animalCondition" required>
+                  <option value="">Select condition</option>
+                  <option value="Injured">Injured</option>
+                  <option value="Abandoned">Abandoned</option>
+                  <option value="Trapped">Trapped</option>
+                  <option value="Hit by Vehicle">Hit by Vehicle</option>
+                  <option value="Weak / Starving">Weak / Starving</option>
+                  <option value="Sick">Sick</option>
+                  <option value="Aggressive / Distressed">Aggressive / Distressed</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="animalCount">Number of Animals *</label>
+                <input type="number" id="animalCount" min="1" value="1" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="rescueLocation">Exact Rescue Location / Address *</label>
+              <input type="text" id="rescueLocation" placeholder="Street, area, city..." required />
+            </div>
+
+            <div class="form-group">
+              <label for="rescueLandmark">Nearby Landmark *</label>
+              <input type="text" id="rescueLandmark" placeholder="Temple, school, station, shop..." required />
+            </div>
+
+            <div class="location-box">
+              <strong><i class="fa-solid fa-location-dot"></i> Live Location Capture</strong>
+              <p id="locationStatusText">Location not captured yet.</p>
+              <input type="hidden" id="rescueLatitude" />
+              <input type="hidden" id="rescueLongitude" />
+            </div>
+
+            <div class="form-group">
+              <label for="rescueDescription">Emergency Description *</label>
+              <textarea id="rescueDescription" rows="5" required placeholder="Explain injury, urgency, animal behavior, traffic risk, bleeding, trapped condition, etc."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="rescueTime">When did you notice this emergency? *</label>
+              <input type="text" id="rescueTime" placeholder="Just now / 10 mins ago / Since morning..." required />
+            </div>
+
+            <div class="form-section-title">Photo Verification</div>
+
+            <div class="camera-box">
+              <strong><i class="fa-solid fa-camera"></i> Camera Access for Rescue Proof</strong>
+              <p>Use your camera to capture the current condition of the animal for verification.</p>
+
+              <video id="cameraStream" class="camera-preview" autoplay playsinline style="display:none;"></video>
+              <canvas id="captureCanvas" style="display:none;"></canvas>
+              <img id="capturedImagePreview" class="captured-preview" alt="Captured rescue animal preview" />
+
+              <div class="camera-actions">
+                <button type="button" class="btn btn-secondary" id="startCameraBtn">Start Camera</button>
+                <button type="button" class="btn btn-secondary" id="capturePhotoBtn" disabled>Capture Photo</button>
+                <button type="button" class="btn btn-secondary" id="stopCameraBtn" disabled>Stop Camera</button>
+              </div>
+
+              <div class="rescue-note-box">
+                For emergency verification, photo proof helps rescuers understand the situation before reaching the spot.
+              </div>
+            </div>
+
+            <div class="form-section-title">Consent</div>
+
+            <label class="consent-item consent-block">
+              <input type="checkbox" id="rescueConsent" required />
+              <span>I confirm that this rescue request is genuine and needs urgent attention. *</span>
+            </label>
+            <small class="field-error" id="rescueConsentError"></small>
+
+            <div class="rescue-form-actions">
+              <button type="submit" class="btn btn-primary">Submit Rescue Request</button>
+              <a href="tel:+919588691368" class="btn btn-secondary">
+                <i class="fa-solid fa-phone-volume"></i> Call Rescue Helpline
+              </a>
+            </div>
+
+            <div id="rescueMessage" class="message"></div>
+          </form>
+        </div>
+
+        <div class="card rescue-side-card">
+          <div class="section-head left">
+            <h2>Tracked Rescue Requests</h2>
+            <p>Latest emergency rescue requests submitted from this device.</p>
+          </div>
+          <div id="rescueList" class="stack-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rescue Info -->
+    <section class="section alt-bg">
+      <div class="container">
+        <div class="section-head">
+          <h2>Emergency Rescue Reporting Process</h2>
+          <p>Each rescue request is recorded with verification, response tracking, and dashboard sync support.</p>
+        </div>
+
+        <div class="grid cards-4">
+          <div class="card rescue-info-card">
+            <h3><i class="fa-solid fa-location-dot"></i> Exact Location</h3>
+            <p>Rescue request includes precise area details and live geolocation capture.</p>
+          </div>
+          <div class="card rescue-info-card">
+            <h3><i class="fa-solid fa-camera"></i> Photo Verification</h3>
+            <p>Captured image helps responders assess urgency before reaching the location.</p>
+          </div>
+          <div class="card rescue-info-card">
+            <h3><i class="fa-solid fa-phone-volume"></i> Emergency Contact</h3>
+            <p>Phone-based emergency contact supports rapid coordination and follow-up.</p>
+          </div>
+          <div class="card rescue-info-card">
+            <h3><i class="fa-solid fa-shield-heart"></i> Dashboard + Admin Sync</h3>
+            <p>Every submitted rescue request appears in user dashboard and admin control panel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scroll Buttons -->
+  <div class="scroll-buttons">
+    <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer enhanced-footer professional-footer">
+    <div class="container footer-top-banner">
+      <div>
+        <h2>Act fast. Save lives. Report emergencies responsibly.</h2>
+        <p>Help us respond faster to animal emergencies with verified rescue details.</p>
+      </div>
+      <a href="#rescueFormSection" class="btn btn-primary">Report Now</a>
+    </div>
+
+    <div class="container footer-grid">
+      <div>
+        <h3>AdoptMe</h3>
+        <p>
+          A professional welfare-focused pet adoption and rescue platform dedicated to verified,
+          responsible, and compassionate rescue, recovery, rehoming, and volunteer-driven support.
+        </p>
+
+        <div class="social-icons-real">
+          <a href="https://facebook.com" class="social-facebook" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com" class="social-x" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com" class="social-youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://linkedin.com" class="social-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="adopt.html">Adopt</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="rescue.html">Rescue</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Emergency Contact</h4>
+        <p><strong>AdoptMe Rescue Desk</strong></p>
+        <p>921, Pet City Kalyan, India</p>
+        <p>Email: support@adoptme.local</p>
+        <p>Phone: +91 9588691368</p>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+        <p class="footer-note-small">Get rescue alerts, emergency support updates, and welfare stories.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AdoptMe. All rights reserved.</p>
+      <p>Thank you for helping animals in emergency situations.</p>
+    </div>
+  </footer>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/rescue.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

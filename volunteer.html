@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volunteer – AdoptMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/volunteer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="chatbot/chatbot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="volunteer">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo adoptme-logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text-wrap">
+          <span class="logo-text-main">AdoptMe</span>
+          <span class="logo-text-sub">Volunteer Registration Portal</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-links" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="adopt.html">Adopt</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="volunteer.html" class="active">Volunteer</a></li>
+        <li><a href="rescue.html">Rescue</a></li>
+        <li><a href="lostfound.html">Lost & Found</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="volunteer-hero">
+      <div class="volunteer-hero-bg">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1600&q=80" alt="Volunteer with AdoptMe" />
+      </div>
+      <div class="volunteer-hero-overlay"></div>
+
+      <div class="container volunteer-hero-inner">
+        <div class="volunteer-hero-text">
+          <span class="badge">Verified Volunteer Registration</span>
+          <h1>Become a registered volunteer and help rescued animals thrive.</h1>
+          <p>
+            Share your time, care, energy, and skills with a verified welfare-focused community.
+            Join our rescue, adoption, event, and outreach support initiatives.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#volunteerSection" class="btn btn-primary">Register Now</a>
+            <a href="#verificationSection" class="btn btn-secondary">View Verification Info</a>
+          </div>
+
+          <div class="home-hero-badges">
+            <span>✔ Verified Registration</span>
+            <span>✔ Volunteer ID Generated</span>
+            <span>✔ Dashboard + Admin Synced</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="section">
+      <div class="container">
+        <div class="grid cards-4">
+          <div class="card dynamic-card stat-card-modern">
+            <h3>100+</h3>
+            <p>Active Volunteers</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>50+</h3>
+            <p>Community Drives</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>300+</h3>
+            <p>Animal Support Tasks</p>
+          </div>
+          <div class="card dynamic-card stat-card-modern">
+            <h3>24/7</h3>
+            <p>Rescue Assistance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteer Form -->
+    <section class="section" id="volunteerSection">
+      <div class="container grid two-col volunteer-layout">
+        <div class="card volunteer-form-card">
+          <div class="section-head left">
+            <h1>Become a Volunteer</h1>
+            <p>Share your time, skills, and care to help rescued pets thrive.</p>
+          </div>
+
+          <form id="volunteerForm" class="form" novalidate>
+            <div class="form-section-title">Personal Information</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="volName">Full Name *</label>
+                <input type="text" id="volName" required />
+              </div>
+              <div class="form-group">
+                <label for="volEmail">Email *</label>
+                <input type="email" id="volEmail" required />
+                <small class="field-error" id="volEmailError"></small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="volPhone">Phone *</label>
+                <input type="tel" id="volPhone" required />
+                <small class="field-error" id="volPhoneError"></small>
+              </div>
+              <div class="form-group">
+                <label for="volCity">City *</label>
+                <input type="text" id="volCity" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="volPhoto">Upload Profile Photo *</label>
+              <input type="file" id="volPhoto" accept="image/*" required />
+            </div>
+
+            <div class="form-section-title">Volunteer Details</div>
+
+            <div class="form-group">
+              <label for="volSkills">Skills *</label>
+              <input type="text" id="volSkills" placeholder="Animal care, event support, transport..." required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="volAvailability">Availability *</label>
+                <select id="volAvailability" required>
+                  <option value="">Select availability</option>
+                  <option value="Weekdays">Weekdays</option>
+                  <option value="Weekends">Weekends</option>
+                  <option value="Flexible">Flexible</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="volRolePreference">Preferred Role *</label>
+                <select id="volRolePreference" required>
+                  <option value="">Select role</option>
+                  <option value="Animal Care">Animal Care</option>
+                  <option value="Event Support">Event Support</option>
+                  <option value="Transport Help">Transport Help</option>
+                  <option value="Rescue Assistance">Rescue Assistance</option>
+                  <option value="Social Media Outreach">Social Media Outreach</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="volReason">Why do you want to volunteer? *</label>
+              <textarea id="volReason" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="volEmergencyContact">Emergency Contact *</label>
+              <input type="text" id="volEmergencyContact" placeholder="Name + Phone Number" required />
+            </div>
+
+            <div class="form-section-title">Terms & Consent</div>
+            <div class="consent-box">
+              <label class="consent-item consent-block">
+                <input type="checkbox" id="volConsent1" required />
+                <span>I confirm that the information submitted is true and correct. *</span>
+              </label>
+              <label class="consent-item consent-block">
+                <input type="checkbox" id="volConsent2" required />
+                <span>I agree to follow AdoptMe safety, welfare, and volunteer conduct guidelines. *</span>
+              </label>
+              <label class="consent-item consent-block">
+                <input type="checkbox" id="volConsent3" required />
+                <span>I consent to verification and official registration as an AdoptMe volunteer. *</span>
+              </label>
+            </div>
+            <small class="field-error" id="volConsentError"></small>
+
+            <div class="form-actions-extended">
+              <button type="submit" class="btn btn-primary">Register as Volunteer</button>
+              <button type="button" class="btn btn-secondary" id="previewVolunteerIdBtn" disabled>Preview ID</button>
+              <button type="button" class="btn btn-secondary" id="downloadVolunteerIdBtn" disabled>Download ID</button>
+              <button type="button" class="btn btn-secondary" id="printVolunteerIdBtn" disabled>Print ID</button>
+            </div>
+
+            <div id="volunteerMessage" class="message"></div>
+          </form>
+        </div>
+
+        <div class="card volunteer-side-card">
+          <h2>Volunteer Community</h2>
+          <div id="volunteersList" class="stack-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verification Info -->
+    <section class="section alt-bg" id="verificationSection">
+      <div class="container">
+        <div class="section-head">
+          <h2>Volunteer Verification & Registration Process</h2>
+          <p>Each volunteer receives a verified registration record, official ID, and organization acceptance notice.</p>
+        </div>
+
+        <div class="grid cards-4">
+          <div class="card info-card">
+            <h3><i class="fa-solid fa-id-card"></i> Official Volunteer ID</h3>
+            <p>Every completed volunteer form generates a registered volunteer ID.</p>
+          </div>
+          <div class="card info-card">
+            <h3><i class="fa-solid fa-image-portrait"></i> Profile Photo Verified</h3>
+            <p>Volunteer registration includes profile image upload for identity support.</p>
+          </div>
+          <div class="card info-card">
+            <h3><i class="fa-solid fa-file-signature"></i> Consent Accepted</h3>
+            <p>Terms and conditions must be accepted before registration is complete.</p>
+          </div>
+          <div class="card info-card">
+            <h3><i class="fa-solid fa-stamp"></i> Registered Stamp</h3>
+            <p>Volunteer ID includes official AdoptMe stamp and founder / co-founder signatures.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Volunteer ID Preview Modal -->
+  <div class="modal" id="volunteerPreviewModal">
+    <div class="modal-content card volunteer-preview-modal">
+      <button class="modal-close" id="closeVolunteerPreviewModal">&times;</button>
+      <div id="volunteerPreviewContainer"></div>
+    </div>
+  </div>
+
+  <!-- Hidden Volunteer ID -->
+  <div id="volunteerCardWrapper" class="certificate-wrapper">
+    <div id="volunteerIdCard" class="adoption-certificate volunteer-id-card">
+      <div class="certificate-watermark">🐾 AdoptMe</div>
+      <div class="certificate-stamp">ADOPTME VOLUNTEER VERIFIED</div>
+      <div class="certificate-header">🐾 AdoptMe</div>
+      <div class="certificate-subtitle">Official Volunteer Registration ID</div>
+
+      <div class="certificate-body">
+        <p>This is to certify that</p>
+        <h2 id="volunteerCardName">Volunteer Name</h2>
+        <p>has been successfully registered as an official volunteer of</p>
+        <h3>AdoptMe Welfare & Rescue Platform</h3>
+
+        <div class="certificate-details">
+          <div><strong>Volunteer ID:</strong> <span id="volunteerGeneratedId">-</span></div>
+          <div><strong>Email:</strong> <span id="volunteerCardEmail">-</span></div>
+          <div><strong>Phone:</strong> <span id="volunteerCardPhone">-</span></div>
+          <div><strong>City:</strong> <span id="volunteerCardCity">-</span></div>
+          <div><strong>Role:</strong> <span id="volunteerCardRole">-</span></div>
+          <div><strong>Availability:</strong> <span id="volunteerCardAvailability">-</span></div>
+          <div><strong>Registered On:</strong> <span id="volunteerCardDate">-</span></div>
+        </div>
+
+        <p class="receipt-thankyou-text">Thank you for standing with rescued animals and the AdoptMe mission. 🐾</p>
+
+        <div class="certificate-signatures founder-signatures">
+          <div>
+            <span>Founder Signature</span>
+            <strong>Vishwakarma Ashish</strong>
+            <small>Web Developer</small>
+            <small>BCA Student</small>
+            <div class="signature-line signature-name">Ashish</div>
+          </div>
+          <div>
+            <span>Co-Founder Signature</span>
+            <strong>Pardeshi Sujal</strong>
+            <small>Full stack developer</small>
+            <small>BCA Student</small>
+            <div class="signature-line signature-name">Sujal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Buttons -->
+  <div class="scroll-buttons">
+    <button id="backToTopBtn" class="scroll-btn scroll-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <button id="backToBottomBtn" class="scroll-btn scroll-bottom" aria-label="Back to bottom">
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer enhanced-footer professional-footer">
+    <div class="container footer-top-banner">
+      <div>
+        <h2>Volunteer with compassion. Serve with purpose.</h2>
+        <p>Become part of a verified community helping rescued animals every day.</p>
+      </div>
+      <a href="#volunteerSection" class="btn btn-primary">Join Now</a>
+    </div>
+
+    <div class="container footer-grid">
+      <div>
+        <h3>AdoptMe</h3>
+        <p>
+          A professional welfare-focused pet adoption and rescue platform dedicated to verified,
+          responsible, and compassionate rehoming, rescue, and volunteer-driven support.
+        </p>
+
+        <div class="social-icons-real">
+          <a href="https://facebook.com" class="social-facebook" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com" class="social-x" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com" class="social-youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://linkedin.com" class="social-linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="adopt.html">Adopt</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="rescue.html">Rescue</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Head Office</h4>
+        <p><strong>AdoptMe Headquarters</strong></p>
+        <p>921, Pet City Kalyan, India</p>
+        <p>Email: support@adoptme.local</p>
+        <p>Phone: +91 9588691368</p>
+      </div>
+
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+        <p class="footer-note-small">Get rescue alerts, success stories, and volunteer updates.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AdoptMe. All rights reserved.</p>
+      <p>Thank you for supporting the AdoptMe volunteer mission.</p>
+    </div>
+  </footer>
+
+  <div id="chatbot-root"></div>
+
+  <script src="newjs/volunteer.js"></script>
+  <script src="chatbot/chatbot.js"></script>
+</body>
+</html>

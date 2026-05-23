@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Volunteers – AdoptMe Admin</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body data-page="manage-volunteers">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <h2>AdoptMe Admin</h2>
+        <p>Volunteer Review Panel</p>
+      </div>
+
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="manage-users.html">Manage Users</a>
+      <a href="manage-animals.html">Manage Animals</a>
+      <a href="manage-adoptions.html">Manage Adoptions</a>
+      <a href="manage-donations.html">Manage Donations</a>
+      <a href="manage-volunteers.html" class="active">Manage Volunteers</a>
+      <a href="manage-rescue.html">Manage Rescue</a>
+      <a href="manage-lostfound.html">Manage Lost & Found</a>
+      <a href="manage-events.html">Manage Events</a>
+      <a href="../index.html">Back to Site</a>
+    </aside>
+
+    <main class="admin-main">
+      <section class="admin-header-card card">
+        <div>
+          <span class="badge">Volunteer Management</span>
+          <h1>Manage Volunteers</h1>
+          <p>
+            Review volunteer registrations, skills, availability, city, role preference,
+            emergency contact, registration status, and official volunteer ID records.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid cards-4 admin-mini-stats mt-24">
+        <div class="card admin-stat polished-stat">
+          <h3>Total Volunteers</h3>
+          <p id="adminVolunteerTotal">0</p>
+          <small>All volunteer registrations</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Verified Submitted</h3>
+          <p id="adminVolunteerVerified">0</p>
+          <small>Verification submitted records</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Weekend Availability</h3>
+          <p id="adminVolunteerWeekend">0</p>
+          <small>Weekend volunteers</small>
+        </div>
+
+        <div class="card admin-stat polished-stat">
+          <h3>Animal Care Role</h3>
+          <p id="adminVolunteerAnimalCare">0</p>
+          <small>Preferred animal care role</small>
+        </div>
+      </section>
+
+      <section class="card mt-24 admin-tools-card">
+        <div class="admin-tools-top">
+          <div>
+            <h2>Search & Filter Volunteers</h2>
+            <p>Find volunteers by name, email, phone, city, role preference, availability, skills, or volunteer ID.</p>
+          </div>
+
+          <div class="admin-action-group">
+            <button id="refreshVolunteersBtn" class="btn btn-secondary">
+              Refresh
+            </button>
+            <button id="exportVolunteersBtn" class="btn btn-secondary">
+              Export CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-toolbar">
+          <input
+            type="text"
+            id="volunteerSearchInput"
+            placeholder="Search by name, email, phone, city, role, skills, volunteer ID..."
+          />
+          <select id="volunteerAvailabilityFilter">
+            <option value="all">All Availability</option>
+            <option value="Weekdays">Weekdays</option>
+            <option value="Weekends">Weekends</option>
+            <option value="Flexible">Flexible</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card mt-24">
+        <div class="section-top-line">
+          <div>
+            <h2>Volunteer Records</h2>
+            <p class="admin-muted">Registered volunteer profiles and official ID records</p>
+          </div>
+        </div>
+
+        <div id="adminVolunteersList" class="stack-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="adminVolunteerModal">
+    <div class="modal-content card adoption-admin-modal polished-admin-modal">
+      <button class="modal-close" id="closeAdminVolunteerModal">&times;</button>
+      <div id="adminVolunteerModalContent"></div>
+    </div>
+  </div>
+
+  <script src="../adminjs/main.js"></script>
+  <script src="../adminjs/auth.js"></script>
+  <script src="../adminjs/admin-volunteers.js"></script>
+</body>
+</html>

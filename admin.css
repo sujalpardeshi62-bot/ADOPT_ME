@@ -1,0 +1,727 @@
+/* =========================================================
+   AdoptMe Admin Panel Styles
+   ========================================================= */
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  min-height: 100vh;
+  background: #f7efe4;
+}
+
+.admin-sidebar {
+  background: linear-gradient(180deg, #8B5E3C 0%, #6f492d 100%);
+  color: var(--white);
+  padding: 26px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.08);
+}
+
+.admin-brand {
+  padding: 10px 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  margin-bottom: 10px;
+}
+
+.admin-brand h2 {
+  margin-bottom: 6px;
+  font-size: 1.4rem;
+}
+
+.admin-brand p {
+  font-size: 0.92rem;
+  opacity: 0.85;
+}
+
+.admin-sidebar a {
+  padding: 12px 14px;
+  border-radius: 14px;
+  transition: var(--transition);
+  font-weight: 600;
+  color: var(--white);
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a.active {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.admin-main {
+  padding: 30px;
+}
+
+.admin-main h1 {
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.admin-header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(135deg, #fffaf3 0%, #ffffff 100%);
+  border: 1px solid rgba(139, 94, 60, 0.1);
+}
+
+.admin-header-card p {
+  max-width: 800px;
+  color: #666;
+}
+
+.admin-page-head p,
+.admin-muted {
+  color: #666;
+  margin-top: 6px;
+}
+
+.admin-mini-stats .admin-stat p {
+  font-size: 1.9rem;
+}
+
+.admin-stat {
+  text-align: center;
+}
+
+.admin-stat p {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 10px;
+}
+
+.polished-stat {
+  position: relative;
+  overflow: hidden;
+}
+
+.polished-stat::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--primary);
+  border-radius: 12px 0 0 12px;
+}
+
+.polished-stat h3 {
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.polished-stat small {
+  color: #777;
+}
+
+.admin-tools-card {
+  background: linear-gradient(180deg, #fff 0%, #fffdf9 100%);
+}
+
+.admin-tools-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.admin-tools-top h2 {
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.admin-tools-top p {
+  color: #666;
+}
+
+.admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.admin-toolbar input,
+.admin-toolbar select {
+  flex: 1;
+  min-width: 220px;
+  padding: 13px 14px;
+  border: 1px solid rgba(139, 94, 60, 0.16);
+  border-radius: 12px;
+  background: #fffdf9;
+  outline: none;
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.admin-toolbar input:focus,
+.admin-toolbar select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.08);
+}
+
+.section-top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.adoption-admin-card {
+  display: grid;
+  gap: 16px;
+  border: 1px solid rgba(139, 94, 60, 0.12);
+  background: linear-gradient(180deg, #fff 0%, #fffdfa 100%);
+}
+
+.adoption-admin-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.adoption-admin-summary h3 {
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.adoption-admin-summary p {
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.adoption-admin-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.admin-status-badge {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.admin-status-badge.success {
+  background: #e7f8ea;
+  color: #1f7a34;
+}
+
+.admin-status-badge.warning {
+  background: #fff3dc;
+  color: #9b6a00;
+}
+
+.admin-status-badge.error {
+  background: #fde8e8;
+  color: #b03030;
+}
+
+.adoption-admin-tags,
+.adoption-admin-files,
+.adoption-admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mini-tag {
+  background: #f7efe3;
+  color: var(--primary);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.adoption-admin-files span {
+  background: #fcf7f0;
+  border: 1px solid rgba(139, 94, 60, 0.1);
+  color: #555;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.admin-reject-btn {
+  background: #c85f5f;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.admin-reject-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+}
+
+.adoption-admin-modal {
+  width: min(980px, 100%);
+}
+
+.polished-admin-modal {
+  background: linear-gradient(180deg, #fff 0%, #fffdfa 100%);
+}
+
+.admin-adoption-detail h2 {
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.admin-adoption-detail > p {
+  margin-bottom: 8px;
+}
+
+.admin-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.admin-detail-grid .card {
+  background: #fff;
+  border: 1px solid rgba(139, 94, 60, 0.08);
+}
+
+.admin-detail-grid .card h3 {
+  color: var(--primary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(139, 94, 60, 0.1);
+}
+
+.admin-detail-grid .card p {
+  margin-bottom: 10px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.admin-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Donation panel polish */
+.donation-summary-card {
+  border-left: 5px solid var(--primary);
+}
+
+.donation-amount-highlight {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.donation-method-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #efe1cf;
+  color: var(--primary);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.donation-note-box {
+  background: #fcf7f0;
+  border: 1px solid rgba(139, 94, 60, 0.1);
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.donation-note-box h4 {
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* Payment verification UI */
+.payment-verified-box {
+  background: #e8f7ea;
+  color: #1f7a34;
+  border: 1px solid rgba(31, 122, 52, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 700;
+}
+
+.payment-pending-box {
+  background: #fff4dc;
+  color: #9b6a00;
+  border: 1px solid rgba(155, 106, 0, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 700;
+}
+
+.auth-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.auth-status-card {
+  background: #fcf7f0;
+  border: 1px solid rgba(139, 94, 60, 0.08);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+}
+
+.auth-status-card strong {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.bank-info-box {
+  background: #f9f1e4;
+  border: 1px solid rgba(139, 94, 60, 0.08);
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.bank-info-box p {
+  margin-bottom: 8px;
+}
+
+.admin-table-card,
+.admin-panel-card {
+  background: linear-gradient(180deg, #fff 0%, #fffdfa 100%);
+}
+
+.admin-table-title {
+  margin-bottom: 14px;
+  color: var(--primary);
+}
+
+.admin-table-wrapper {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(139, 94, 60, 0.1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.admin-table th {
+  background: #f8efe3;
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+.admin-table tr:hover td {
+  background: rgba(216, 195, 165, 0.12);
+}
+
+.admin-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: #f7efe3;
+  color: var(--primary);
+}
+
+.admin-empty-state {
+  text-align: center;
+  padding: 36px 20px;
+  color: #777;
+}
+
+.admin-empty-state h3 {
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.admin-result-count {
+  font-size: 0.92rem;
+  color: #777;
+  margin-top: 8px;
+}
+
+.admin-action-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-main .btn {
+  box-shadow: none;
+}
+
+.admin-main .btn.btn-secondary {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.admin-main .btn.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.polished-admin-modal {
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.admin-form-group {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-form-group input,
+.admin-form-group select,
+.admin-form-group textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid rgba(139, 94, 60, 0.18);
+  border-radius: 12px;
+  background: #fffdf9;
+  outline: none;
+}
+
+.admin-form-group input:focus,
+.admin-form-group select:focus,
+.admin-form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.08);
+}
+
+@media (max-width: 991px) {
+  .admin-layout {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .auth-status-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    align-items: center;
+    padding: 14px;
+  }
+
+  .admin-brand {
+    display: none;
+  }
+
+  .admin-main {
+    padding: 18px;
+  }
+
+  .admin-detail-grid,
+  .admin-form-grid,
+  .auth-status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .adoption-admin-meta {
+    align-items: flex-start;
+  }
+
+  .section-top-line,
+  .admin-tools-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-toolbar {
+    flex-direction: column;
+  }
+
+  .admin-toolbar input,
+  .admin-toolbar select {
+    width: 100%;
+  }
+
+  .admin-modal-actions,
+  .adoption-admin-actions,
+  .admin-action-group {
+    flex-direction: column;
+  }
+
+  .admin-modal-actions .btn,
+  .adoption-admin-actions .btn,
+  .admin-action-group .btn,
+  .admin-reject-btn {
+    width: 100%;
+  }
+}
+
+.admin-page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.stack-list {
+  display: grid;
+  gap: 16px;
+}
+
+.admin-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-row-left h3 {
+  margin-bottom: 8px;
+}
+
+.admin-row-left p {
+  margin: 4px 0;
+}
+
+.admin-row-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.admin-row-right select {
+  min-width: 130px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.admin-form-card {
+  margin-bottom: 24px;
+}
+
+.admin-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d8d8d8;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-animal-thumb {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.animal-admin-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Danger button */
+.btn-danger {
+  background: #d9534f;
+  color: #fff;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #c9302c;
+}
+
+/* Dark theme */
+body.dark-theme .admin-row-right select,
+body.dark-theme .admin-form input,
+body.dark-theme .admin-form select,
+body.dark-theme .admin-form textarea {
+  background: #1f1f1f;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.dark-theme .btn-danger {
+  background: #b8403c;
+}
+
+body.dark-theme .btn-danger:hover {
+  background: #992f2b;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .animal-admin-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-animal-thumb {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+  }
+}
